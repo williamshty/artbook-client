@@ -2,7 +2,10 @@
   "name": "Artbook",
   "version": "1.0.1",
   "description": "Web App for Artbook",
-  "author": ["Shi Tianyuan", "Xiong Zhe"],
+  "author": [
+    "Shi Tianyuan",
+    "Xiong Zhe"
+  ],
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
