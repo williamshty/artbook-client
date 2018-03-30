@@ -1,14 +1,22 @@
 <template>
   <div class="">
-      <el-row :gutter="24">
-        <el-col :span="4"><div class="grid-content"></div></el-col>
-        <el-col :span="16">
-            <div class="grid-content" style="background-color:red;">
-                    123
-            </div>
-        </el-col>
-        <el-col :span="4"><div class="grid-content"></div></el-col>
-      </el-row>
+      <div class="row">
+        <div class="col-2-of-12">
+          <p class="new" style="background-color:red">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, quam dolore! Porro veritatis modi quos, in dolores odio illum odit officiis sunt rem aliquid qui esse minima iste itaque autem?
+          </p>
+        </div>
+        <div class="col-8-of-12">
+           <p class="new" style="background-color:red">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, quam dolore! Porro veritatis modi quos, in dolores odio illum odit officiis sunt rem aliquid qui esse minima iste itaque autem?
+          </p>
+        </div>
+        <div class="col-2-of-12">
+           <p class="new" style="background-color:red">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, quam dolore! Porro veritatis modi quos, in dolores odio illum odit officiis sunt rem aliquid qui esse minima iste itaque autem?
+          </p>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -26,8 +34,4 @@ export default {
 }
 </script>
 <style>
-
-html {
-font-size: 1.6rem;
-}
 </style>

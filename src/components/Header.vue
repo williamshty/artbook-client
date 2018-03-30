@@ -1,13 +1,13 @@
 <template>
-  <div class="header">
+    <div class="header">
             <div class="header__text-box">
                 <h1 class="heading-primary">
                     <span class="heading-primary--main">Artbook</span>
                     <span class="heading-primary--sub">The Perfect Artwork Ownership and Record Solution</span>
                 </h1>
-              <a href="#" class="btn btn--white btn--animated" v-scroll-to="'.heading-secondary'">Join Us</a>
+              <a href="#" class="btn btn--white btn--animated" >Join Us</a>
             </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -25,4 +25,7 @@ export default {
 }
 </script>
 <style>
+html{
+  font-size: 62.5%;
+}
 </style>
