@@ -1,8 +1,8 @@
 {
-  "name": "chinese_drama_website",
-  "version": "1.0.0",
-  "description": "Web App for NUS Chinese Drama",
-  "author": "Shi Tianyuan",
+  "name": "Artbook",
+  "version": "1.0.1",
+  "description": "Web App for Artbook",
+  "author": ["Shi Tianyuan", "Xiong Zhe"],
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -15,6 +15,8 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0-beta.2",
     "bootstrap-vue": "^1.5.1",
+    "element-ui": "^2.3.2",
+    "jquery": "^3.3.1",
     "vue": "^2.5.2",
     "vue-qrcode-reader": "^0.7.1",
     "vue-router": "^3.0.1",

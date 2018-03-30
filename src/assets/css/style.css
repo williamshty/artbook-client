@@ -228,6 +228,7 @@ body {
   background-size: cover;
   background-position: top;
   position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 87vh, 0 100%);
   /* to crop the graph */ }
   .header__logo-box {
     position: absolute;
