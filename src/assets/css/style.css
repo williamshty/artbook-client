@@ -216,13 +216,56 @@ body {
   left: 0%;
   width: 100%;
   height: 3rem;
-  padding-left: 2rem;
-  padding-top: 0.2rem;
+  padding-left: 1rem;
   padding-bottom: 0.2rem;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  border-bottom-left-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem; }
+  .navigation__logo {
+    padding-top: 0.4rem;
+    height: 80%;
+    display: inline; }
   .navigation--authority {
-    background-color: #22313F;
+    background-image: linear-gradient(to right bottom, rgba(34, 49, 63, 0.8), rgba(25, 84, 123, 0.8));
     color: #fff; }
+  .navigation--agency {
+    background-image: linear-gradient(to right bottom, rgba(145, 61, 136, 0.8), rgba(25, 84, 123, 0.8));
+    color: #fff; }
+  .navigation--individual {
+    background-image: linear-gradient(to right bottom, #f7ca18, rgba(255, 216, 155, 0.8));
+    color: #000; }
+  .navigation--police {
+    background-image: linear-gradient(to right bottom, rgba(108, 122, 137, 0.8), rgba(25, 84, 123, 0.8));
+    color: #fff; }
+
+::after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.landing--circle {
+  float: left;
+  box-sizing: border-box;
+  background-color: #D2D7D3;
+  width: 42vh;
+  height: 42vh;
+  margin: 2vh 4vh;
+  border-radius: 50%; }
+  .landing--circle:hover {
+    cursor: pointer; }
+  .landing--circle__text {
+    font-size: 1.4rem;
+    text-align: center;
+    margin-top: 1.5rem;
+    overflow: hidden; }
+  .landing--circle__img {
+    height: 25vh;
+    margin: 0 auto;
+    position: relative;
+    left: 50%;
+    top: -3.5rem;
+    transform: translate(-50%, 50%); }
 
 .title {
   position: relative;

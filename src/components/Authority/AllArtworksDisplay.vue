@@ -111,6 +111,9 @@ export default {
   .btn-add {
     position: relative;
     left: 50%;
-    transform: translate(-50%,50%)
+    transform: translate(-50%,50%);
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-color: #4CAF50;
   }
 </style>

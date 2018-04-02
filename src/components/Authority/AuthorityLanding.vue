@@ -1,0 +1,76 @@
+<template>
+  <div class="">
+    <div class="navigation navigation--authority">
+      Authority Portal
+    </div>
+    <el-row :gutter="20">
+      <el-col :span="4">
+        <div class="grid-content">
+        </div>
+      </el-col>
+      <el-col :span="16">
+        <div class="grid-content panel">
+            <div class="landing--circle">
+                <img src="../../assets/img/recent_artwork.png" alt="" class="landing--circle__img">
+                <div class="landing--circle__text">
+                   Recent Artwork
+                </div>
+            </div>
+            <div class="landing--circle">
+                <img src="../../assets/img/transfer.png" alt="" class="landing--circle__img">
+                <div class="landing--circle__text">
+                    Recent Ownership <br/>Transfer
+                </div>
+            </div>
+            <div class="landing--circle">
+                <img src="../../assets/img/all_artwork.png" alt="" class="landing--circle__img">
+                <div class="landing--circle__text">
+                    All Artworks
+                </div>
+            </div>
+            <div class="landing--circle">
+                <img src="../../assets/img/lost.png" alt="" class="landing--circle__img">
+                <div class="landing--circle__text">
+                    All Lost Artwork
+                </div>
+            </div>
+        </div>
+      </el-col>
+      <el-col :span="4">
+        <div class="grid-content"></div>
+      </el-col>
+    </el-row>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+    }
+  },
+  methods: {
+  },
+  beforeMount () {
+  }
+}
+</script>
+<style scoped>
+.el-row {
+    margin-bottom: 20px;
+
+  }
+  .el-col {
+    border-radius: 4px;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+    position: relative;
+    /* background-color: red; */
+  }
+  .panel{
+    position: relative;
+    left: 10%;
+    /* background-color: rebeccapurple; */
+  }
+</style>
