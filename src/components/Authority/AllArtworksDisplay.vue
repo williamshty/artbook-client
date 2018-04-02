@@ -1,8 +1,6 @@
 <template>
   <div class="">
-    <div class="navigation navigation--authority">
-      Authority Portal
-    </div>
+    <authority-header></authority-header>
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
@@ -48,6 +46,7 @@
   </div>
 </template>
 <script>
+import AuthorityHeader from './AuthorityHeader'
 export default {
   data () {
     return {
@@ -91,11 +90,19 @@ export default {
     }
 
   },
+  components: {
+    AuthorityHeader
+  },
   beforeMount () {
     this.loadAllArtworks()
   }
 }
 </script>
+<style>
+html{
+}
+</style>
+
 <style scoped>
 .el-row {
     margin-bottom: 20px;
@@ -110,6 +117,7 @@ export default {
   }
   .btn-add {
     position: relative;
+    padding-bottom: 0;
     left: 50%;
     transform: translate(-50%,50%);
     background-color: #4CAF50;

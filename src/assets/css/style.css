@@ -5,6 +5,9 @@
   padding: 0;
   box-sizing: inherit; }
 
+html {
+  background-image: url("../img/regal.png"); }
+
 body {
   box-sizing: border-box; }
 
@@ -218,10 +221,10 @@ body {
   height: 3rem;
   padding-left: 1rem;
   padding-bottom: 0.2rem;
-  margin-bottom: 2rem;
   box-sizing: border-box;
   border-bottom-left-radius: 0.4rem;
-  border-bottom-right-radius: 0.4rem; }
+  border-bottom-right-radius: 0.4rem;
+  cursor: pointer; }
   .navigation__logo {
     padding-top: 0.4rem;
     height: 80%;

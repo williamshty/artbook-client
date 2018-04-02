@@ -2,10 +2,10 @@
 <div>
   <div class="title">
       <div class="title__portal-group">
-             <a href="#" class="btn btn--black btn--animated btn--navigate" @click="$router.push('/authority')">Authority</a>
-             <a href="#" class="btn btn--black btn--animated btn--navigate">Agency</a>
-             <a href="#" class="btn btn--black btn--animated btn--navigate">Individual</a>
-             <a href="#" class="btn btn--black btn--animated btn--navigate">Police</a>
+             <el-button type="info" round @click="reirectToAuthority">Authority</el-button>
+             <el-button type="info" round @click="reirectToAuthority">Agency</el-button>
+             <el-button type="info" round @click="reirectToAuthority">Individual</el-button>
+             <el-button type="info" round @click="reirectToAuthority">Police</el-button>
       </div>
     </div>
 
@@ -14,6 +14,7 @@
 </template>
 <script>
 import ArtsHeader from './Header'
+import router from '@/router/index.js'
 export default {
   name: 'LandingPage',
   data () {
@@ -24,6 +25,9 @@ export default {
     ArtsHeader
   },
   methods: {
+    reirectToAuthority () {
+      router.replace('/authority')
+    }
   },
   beforeMount () {
   }

@@ -1,8 +1,6 @@
 <template>
-  <div class="">
-    <div class="navigation navigation--authority">
-      Authority Portal
-    </div>
+  <div class="authority-landing">
+    <authority-header></authority-header>
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
@@ -22,7 +20,7 @@
                     Recent Ownership <br/>Transfer
                 </div>
             </div>
-            <div class="landing--circle">
+            <div class="landing--circle" @click="redirectAllArtwork()">
                 <img src="../../assets/img/all_artwork.png" alt="" class="landing--circle__img">
                 <div class="landing--circle__text">
                     All Artworks
@@ -43,21 +41,30 @@
   </div>
 </template>
 <script>
+import router from '@/router/index.js'
+import AuthorityHeader from './AuthorityHeader'
 export default {
   data () {
     return {
     }
   },
   methods: {
+    redirectAllArtwork () {
+      router.replace('/authorityconsole')
+    }
+  },
+  components: {
+    AuthorityHeader
   },
   beforeMount () {
   }
 }
 </script>
+<style>
+</style>
 <style scoped>
 .el-row {
     margin-bottom: 20px;
-
   }
   .el-col {
     border-radius: 4px;
@@ -73,4 +80,4 @@ export default {
     left: 10%;
     /* background-color: rebeccapurple; */
   }
-</style>
+  </style>
