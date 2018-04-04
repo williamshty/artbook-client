@@ -4,7 +4,7 @@
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
-          <el-button class="btn-add" type="primary" icon="el-icon-plus">Add New Artwork</el-button>
+          <el-button class="btn--add" type="primary" icon="el-icon-plus">Add New Artwork</el-button>
         </div>
       </el-col>
       <el-col :span="16">
@@ -20,18 +20,14 @@
             </el-table-column>
             <el-table-column label="Documents">
               <template slot-scope="scope">
-                <el-button
-                size="mini"
-                type="danger"
+                <el-button class="btn--document"
                 @click="viewDocuments(scope.row.artworkID)">
                 View Documents</el-button>
               </template>
             </el-table-column>
             <el-table-column label="History">
               <template slot-scope="scope">
-                <el-button
-                size="mini"
-                type="warning"
+                <el-button class="btn--history"
                 @click="viewHistory(scope.row.artworkID)">
                 View History</el-button>
               </template>
@@ -115,13 +111,23 @@ html{
     border-radius: 4px;
     min-height: 36px;
   }
-  .btn-add {
+  .btn--add {
     position: relative;
     padding-bottom: 0;
     left: 50%;
     transform: translate(-50%,50%);
-    background-color: #4CAF50;
+    background-color: #68C3A3;
     color: #ffffff;
-    border-color: #4CAF50;
+    border-color: #68C3A3;
+  }
+  .btn--history {
+    background-color: #1F3A93;
+    color: #ffffff;
+    border-color: #1F3A93;
+  }
+  .btn--document {
+    background-color: #22A7F0;
+    color: #ffffff;
+    border-color: #22A7F0;
   }
 </style>
