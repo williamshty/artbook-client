@@ -6,13 +6,15 @@ import router from './router'
 import vueScrollTo from 'vue-scroll-to'
 import VueQrcodeReader from 'vue-qrcode-reader'
 import axios from 'axios'
-import BootstrapVue from 'bootstrap-vue'
+// import BootstrapVue from 'bootstrap-vue'
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
-// import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import moment from 'moment'
+Vue.prototype.$moment = moment
 Vue.use(ElementUI)
-Vue.use(BootstrapVue)
+// Vue.use(BootstrapVue)
 Vue.use(VueQrcodeReader)
 Vue.use(vueScrollTo)
 Vue.config.productionTip = false
