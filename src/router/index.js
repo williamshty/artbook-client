@@ -5,8 +5,9 @@ import AuthorityDisplay from '@/components/authority/AllArtworksDisplay'
 import AuthorityLanding from '@/components/authority/AuthorityLanding'
 import LogIn from '@/components/individual/LogIn'
 import SignUp from '@/components/individual/SignUp'
-import ArtworkDetails from '@/components/individual/ArtworkDetails'
+import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
+import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
 
 Vue.use(Router)
 
@@ -36,12 +37,16 @@ export default new Router({
       component: SignUp
     },
     {
+      path: '/artwork/:id',
+      component: ArtworkDetails
+    },
+    {
       path: '/my',
       component: MyArtworks
     },
     {
-      path: '/my/artwork/:id',
-      component: ArtworkDetails
+      path: '/agency',
+      component: ConsignedArtworks
     }
   ]
 })

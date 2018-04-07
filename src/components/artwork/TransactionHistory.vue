@@ -5,7 +5,8 @@
             Jan 23, 2017
         </div>
         <div class="text-right my-0">
-            <span>Sold at</span>USD$450,000
+            <span>Sold at</span>
+            $450,000
         </div>
         <div class="text-right my-0">
             <span>by</span>
@@ -28,6 +29,6 @@ div.time {
 }
 div span {
     font-size: 0.9em;
-    display: inline;
+    display: inline-block;
 }
 </style>
