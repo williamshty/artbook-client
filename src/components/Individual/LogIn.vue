@@ -13,7 +13,9 @@
       </el-form-item>
     </el-form>
     <el-button type="primary" @click="onLogIn()">Login</el-button>
-    <div class="mt-2 text-center">Don't have an account? <a href="" @click="goToSignUp()">Sign up!</a></div>
+    <div class="mt-2 text-center">Don't have an account?
+      <a href="" @click="goToSignUp()">Sign up!</a>
+    </div>
   </el-dialog>
 </template>
 
@@ -33,7 +35,7 @@ export default {
   },
   methods: {
     onLogIn() {
-      dialogVisible = false
+      dialogVisible = false;
     },
     goToSignUp() {}
   }
