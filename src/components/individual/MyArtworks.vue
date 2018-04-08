@@ -4,11 +4,13 @@
       <div class="col-1">
       </div>
       <div class="col-10">
+        <h3>My Artworks</h3>
         <el-table
           :data="artworks"
           :default-sort="{prop: 'id', order: 'descending'}"
           style="width: 100%">
           <el-table-column
+            width="100px"
             prop="id"
             label="ID"
             sortable>

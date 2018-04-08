@@ -5,6 +5,32 @@
   padding: 0;
   box-sizing: inherit; }
 
+input.el-input__inner {
+    border-radius: 20px;
+}
+
+.el-input.is-active .el-input__inner, .el-input__inner:focus {
+  border-color: #3A6E7F !important;
+  }
+
+.el-button--primary {
+  background: #3A6E7F !important;
+  border-color: #3A6E7F !important;
+  color: #fff !important;
+}
+
+.el-button--primary.is-plain {
+  color: #3A6E7F !important;
+  border-color: #3A6E7F !important;
+  background: #fff !important;
+}
+
+.el-button--primary.is-plain:focus, .el-button--primary.is-plain:hover {
+  background: #3A6E7F !important;
+  border-color: #3A6E7F !important;
+  color: #fff !important;
+}
+
 html {
   background-image: url("../img/regal.png"); }
 
