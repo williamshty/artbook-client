@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <authority-header></authority-header>
+    <police-header></police-header>
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
-          <el-button class="btn--add" type="primary" icon="el-icon-plus">Add New Artwork</el-button>
+          <!-- <el-button class="btn--add" type="primary" icon="el-icon-plus">Add New Artwork</el-button> -->
         </div>
       </el-col>
       <el-col :span="16">
@@ -18,6 +18,12 @@
             </el-table-column>
             <el-table-column prop="artworkOwner" label="Owner" sortable>
             </el-table-column>
+            <!-- <el-table-column prop="artworkStatus" label="Status" sortable>
+              <template slot-scope="scope">
+                <el-button :type="saleButtonType(scope.row.artworkStatus)">
+                {{scope.row.artworkStatus}}</el-button>
+              </template>
+            </el-table-column> -->
             <el-table-column label="Documents">
               <template slot-scope="scope">
                 <el-button class="btn--document"
@@ -42,7 +48,7 @@
   </div>
 </template>
 <script>
-import AuthorityHeader from './AuthorityHeader'
+import PoliceHeader from './PoliceHeader'
 export default {
   data () {
     return {
@@ -51,27 +57,37 @@ export default {
           artworkID: '123',
           artworkTitle: 'Sunflower',
           artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
+          artworkOwner: 'STY',
+          artworkStatus: 'on'
         },
         {
           artworkID: '223',
           artworkTitle: 'Sunflower',
           artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
+          artworkOwner: 'STY',
+          artworkStatus: 'off'
         },
         {
           artworkID: '333',
           artworkTitle: 'Sunflower',
           artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
+          artworkOwner: 'STY',
+          artworkStatus: 'on'
         },
         {
           artworkID: '444',
           artworkTitle: 'Sunflower',
           artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
+          artworkOwner: 'STY',
+          artworkStatus: 'off'
         }
       ]
+    }
+  },
+  computed: {
+    saleButtonType (status) {
+      if (status === 'on') return 'danger'
+      else return 'success'
     }
   },
   methods: {
@@ -84,10 +100,9 @@ export default {
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
     }
-
   },
   components: {
-    AuthorityHeader
+    PoliceHeader
   },
   beforeMount () {
     this.loadAllArtworks()

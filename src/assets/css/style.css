@@ -5,11 +5,9 @@
   padding: 0;
   box-sizing: inherit; }
 
-html {
-  background-image: url("../img/regal.png"); }
-
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-image: url("../img/regal.png") !important; }
 
 @keyframes moveInLeft {
   0% {
@@ -77,7 +75,7 @@ body {
   text-transform: uppercase;
   font-weight: 700;
   display: inline-block;
-  background-image: linear-gradient(to right, #ec7373, #690b0b);
+  background-image: linear-gradient(to left bottom, #ffd89b, #19547b);
   -webkit-background-clip: text;
   color: transparent;
   letter-spacing: .2rem;
@@ -114,7 +112,8 @@ body {
   background-color: #f7f7f7;
   padding: 15rem 0;
   margin-top: 0vh;
-  position: relative; }
+  position: relative;
+  z-index: 0; }
 
 .btn {
   /* psudeo element is a child of the actual element ::after*/ }
@@ -195,17 +194,17 @@ body {
     transition: all .2s;
     outline-offset: 2rem; }
     .composition__photo--p1 {
-      left: 0;
-      top: -2rem; }
+      left: 8%;
+      top: -3rem; }
     .composition__photo--p2 {
-      right: 0;
-      top: 2rem; }
+      right: 8%;
+      top: 4rem; }
     .composition__photo--p3 {
       left: 20%;
-      top: 10rem; }
+      top: 15rem; }
     .composition__photo:hover {
-      outline: 1.5rem solid #C0392B;
-      transform: scale(1.05) translateY(5px);
+      outline: 1.2rem solid #ffd89b;
+      transform: scale(1.1) translateY(5px);
       box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
       z-index: 20; }
   .composition:hover .composition__photo:not(:hover) {
@@ -287,7 +286,7 @@ body {
   background-size: cover;
   background-position: top;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 87vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100vh, 0 100%);
   /* to crop the graph */ }
   .header__logo-box {
     position: absolute;

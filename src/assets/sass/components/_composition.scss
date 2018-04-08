@@ -1,33 +1,37 @@
 .composition {
     position: relative;
-    
+    // z-index: 100;
     &__photo {
         width: 52%;
         box-shadow: 0 1.5rem 4rem rgba($color-black, .4);
         border-radius: 2px;
         position: absolute;
         transition: all .2s;
-        //make space between border and outline
+        // make space between border and outline
         outline-offset: 2rem;
-
+        // z-index: 100;
         &--p1 {
-            left: 0;
-            top: -2rem;
+            left: 8%;
+            top: -3rem;
+            // z-index: 100;
         }
 
         &--p2 {
-            right: 0;
-            top: 2rem;
+            right: 8%;
+            top: 4rem;
+            // z-index: 101;
+
         }
 
         &--p3 {
             left: 20%;
-            top:10rem;
+            top:15rem;
+            // z-index: 102;
         }
 
         &:hover {
-            outline: 1.5rem solid $color-red-border;
-            transform: scale(1.05) translateY(5px);
+            outline: 1.2rem solid $color-arts-primary;
+            transform: scale(1.1) translateY(5px);
             box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
             z-index:20;
         }

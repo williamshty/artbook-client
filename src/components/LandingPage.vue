@@ -10,10 +10,12 @@
     </div>
 
 <ArtsHeader></ArtsHeader>
+<market-place></market-place>
 </div>
 </template>
 <script>
 import ArtsHeader from './Header'
+import MarketPlace from './MarketPlace'
 import router from '@/router/index.js'
 export default {
   name: 'LandingPage',
@@ -22,7 +24,8 @@ export default {
     }
   },
   components: {
-    ArtsHeader
+    ArtsHeader,
+    MarketPlace
   },
   methods: {
     reirectToAuthority () {
