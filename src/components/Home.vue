@@ -57,7 +57,7 @@ import Signup from "./individual/Signup.vue";
 export default {
   data() {
     return {
-      whichDialogVisible: "",
+      whichDialogVisible: "", // my, agency, police, authority
       signupVisible: false
     };
   },
