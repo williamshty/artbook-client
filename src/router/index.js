@@ -1,11 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import LandingPage from '@/components/LandingPage'
+import Home from '@/components/Home.vue'
 import AuthorityDisplay from '@/components/authority/AllArtworksDisplay'
 import AuthorityLanding from '@/components/authority/AuthorityLanding'
 import PoliceDisplay from '@/components/police/PoliceArtworksDisplay'
-import LogIn from '@/components/individual/LogIn'
-import SignUp from '@/components/individual/SignUp'
 import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
 import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
@@ -16,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'LandingPage',
-      component: LandingPage
+      name: 'Home Page',
+      component: Home
     },
     {
       path: '/authorityConsole',
@@ -33,14 +31,6 @@ export default new Router({
       path: '/policeConsole',
       name: 'Police Console',
       component: PoliceDisplay
-    },
-    {
-      path: '/login',
-      component: LogIn
-    },
-    {
-      path: '/signup',
-      component: SignUp
     },
     {
       path: '/artwork/:id',
