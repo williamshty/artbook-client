@@ -114,7 +114,7 @@ export default {
             data.owner = owner
           }
           console.log(this.tableData)
-        })``
+        })
         .catch(err => {
           console.log(err)
         })
@@ -131,6 +131,13 @@ export default {
   },
   beforeMount () {
     this.loadAllArtworks()
+    var type = sessionStorage.type
+    var user = JSON.parse(sessionStorage.user)
+    this.$http.defaults.headers.common = {
+      Id: user.authorityId,
+      Type: type
+    }
+    console.log(this.$http.defaults.headers.common)
   }
 }
 </script>

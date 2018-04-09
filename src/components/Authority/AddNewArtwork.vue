@@ -30,7 +30,7 @@
         :on-success="fileUploaded"
           class="upload-demo"
           drag
-          action="http://172.25.98.129:3000/upload"
+          :action="this.$http.defaults.baseURL+'upload'"
           multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
@@ -120,6 +120,16 @@
         this.$emit("close") // let parent set this dialog to invisible
       }
     }
+    },
+    beforeMount () {
+    // this.loadAllArtworks()
+    var type = sessionStorage.type
+    var user = JSON.parse(sessionStorage.user)
+    this.$http.defaults.headers.common = {
+      Id: user.authorityId,
+      Type: type
+    }
+    console.log(this.$http.defaults.headers.common)
     }
   }
 </script>

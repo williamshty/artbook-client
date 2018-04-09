@@ -52,7 +52,7 @@ export default {
           sessionStorage.type = "authority";
           // set headers to identify request originator for future http requests
           this.$http.defaults.headers.common = {
-            Id: resp.data.account,
+            Id: resp.data.authorityId,
             Type: "authority"
           };
           console.log(this.$http.defaults.headers.common);
