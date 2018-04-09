@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import AuthorityDisplay from '@/components/authority/AllArtworksDisplay'
 import AuthorityLanding from '@/components/authority/AuthorityLanding'
+import PoliceLanding from '@/components/police/PoliceLanding'
 import PoliceDisplay from '@/components/police/PoliceArtworksDisplay'
 import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
@@ -31,6 +32,11 @@ export default new Router({
       component: AuthorityLanding
     },
     {
+      path: '/police',
+      name: 'Police Landing',
+      component: PoliceLanding
+    },
+    {
       path: '/policeConsole',
       name: 'Police Console',
       component: PoliceDisplay
@@ -56,7 +62,7 @@ export default new Router({
       component: AuthorityRecent
     },
     {
-      path: '/payment/:paymentId',
+      path: '/payment/:paymentId/:price/:token',
       component: MockPaymentPage
     }
   ]

@@ -9,32 +9,38 @@
       <el-col :span="16">
         <div class="grid-content">
           <el-table :data="tableData" stripe style="width: 100%">
-            <el-table-column prop="artworkID" label="Artwork ID" sortable>
+            <el-table-column prop="artworkId" label="Artwork ID" sortable>
             </el-table-column>
-            <el-table-column prop="artworkTitle" label="Artwork Title" sortable>
+            <el-table-column prop="title" label="Artwork Title" sortable>
             </el-table-column>
-            <el-table-column prop="artworkArtist" label="Artist" sortable>
+            <el-table-column prop="artist" label="Artist" sortable>
             </el-table-column>
-            <el-table-column prop="artworkOwner" label="Owner" sortable>
+            <el-table-column prop="owner" label="Owner" sortable>
             </el-table-column>
-            <el-table-column label="Update Status">
+            <el-table-column label="Status">
               <template slot-scope="scope">
-                <el-button class="btn--document"
-                @click="markMissing(scope.row.artworkID)">
-                Mark Missing</el-button>
+                <el-button class="" type="success"
+                v-if="scope.row.lost === false">
+                In Place</el-button>
+                <el-button class="" type="danger"
+                v-else>
+                Lost</el-button>
               </template>
             </el-table-column>
-            <el-table-column label="Recover">
+            <el-table-column label="Update Status" width="160px;">
               <template slot-scope="scope">
                 <el-button class="" type="danger"
-                @click="markRecovered(scope.row.artworkID)">
+                @click="markMissing(scope.row.artworkId)" v-if="scope.row.lost === false">
+                Mark Missing</el-button>
+                <el-button class="" type="success"
+                @click="markRecovered(scope.row.artworkId)" v-else>
                 Mark Recovered</el-button>
               </template>
             </el-table-column>
             <el-table-column label="History">
               <template slot-scope="scope">
                 <el-button class="btn--history"
-                @click="viewDetails(scope.row.artworkID)">
+                @click="viewDetails(scope.row.artworkId)">
                 View History</el-button>
               </template>
             </el-table-column>
@@ -72,28 +78,37 @@ export default {
     }
   },
   methods: {
-    // viewDocuments (artworkID) {
-    //   console.log(`Documents for ID: ${artworkID}`)
+    // viewDocuments (artworkId) {
+    //   console.log(`Documents for ID: ${artworkId}`)
     // },
-    viewHistory (artworkID) {
-      console.log(`History for ID: ${artworkID}`)
+    viewHistory (artworkId) {
+      console.log(`History for ID: ${artworkId}`)
     },
-    viewDetails (artworkID) {
+    viewDetails (artworkId) {
       console.log('view details')
-      this.$router.push(`/artwork/${artworkID}`)
+      this.$router.push(`/artwork/${artworkId}`)
     },
-    markMissing (artworkID) {
-      console.log(`Add document for ID: ${artworkID}`)
-      this.currentArtworkId = artworkID
+    markMissing (artworkId) {
+      console.log(`Add document for ID: ${artworkId}`)
+      this.currentArtworkId = artworkId
       this.displayMarkMissing = true
     },
-    markRecovered (artworkID) {
-      console.log(`Add document for ID: ${artworkID}`)
-      this.currentArtworkId = artworkID
+    markRecovered (artworkId) {
+      console.log(`Add document for ID: ${artworkId}`)
+      this.currentArtworkId = artworkId
       this.displayMarkRecovered = true
     },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
+      this.$http
+        .get('/artwork')
+        .then(resp => {
+          console.log(resp)
+          this.tableData = resp.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     closeDialogs () {
       this.displayMarkRecovered = false

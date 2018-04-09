@@ -7,37 +7,57 @@
           <el-button class="btn--add" type="primary" icon="el-icon-plus" @click="displayAddArtwork = true">Add New Artwork</el-button>
         </div>
       </el-col>
-      <el-col :span="16">
+      <el-col :span="20">
         <div class="grid-content">
           <el-table :data="tableData" stripe style="width: 100%">
-            <el-table-column prop="artworkID" label="Artwork ID" sortable>
+            <el-table-column prop="artworkId" label="Artwork ID" sortable>
             </el-table-column>
-            <el-table-column prop="artworkTitle" label="Artwork Title" sortable>
+            <el-table-column prop="title" label="Artwork Title" sortable>
             </el-table-column>
-            <el-table-column prop="artworkArtist" label="Artist" sortable>
+            <el-table-column prop="artist" label="Artist" sortable>
             </el-table-column>
-            <el-table-column prop="artworkOwner" label="Owner" sortable>
+            <el-table-column prop="owner" label="Owner" sortable>
             </el-table-column>
             <el-table-column label="Documents">
               <template slot-scope="scope">
                 <el-button class="btn--document"
-                @click="addDocument(scope.row.artworkID)">
+                @click="addDocument(scope.row.artworkId)">
                 Add Document</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="Status">
+              <template slot-scope="scope">
+                <el-button class="" type="success"
+                v-if="scope.row.lost === false">
+                In Place</el-button>
+                <el-button class="" type="danger"
+                v-else>
+                Lost</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="Sale">
+              <template slot-scope="scope">
+                <el-button class="" type="warning"
+                v-if="scope.row.onSale === false">
+                Off</el-button>
+                <el-button class="" type="primary"
+                v-else>
+                On</el-button>
               </template>
             </el-table-column>
             <el-table-column label="History">
               <template slot-scope="scope">
                 <el-button class="btn--history"
-                @click="viewDetails(scope.row.artworkID)">
+                @click="viewDetails(scope.row.artworkId)">
                 View History</el-button>
               </template>
             </el-table-column>
           </el-table>
         </div>
       </el-col>
-      <el-col :span="4">
+      <!-- <el-col :span="4">
         <div class="grid-content"></div>
-      </el-col>
+      </el-col> -->
     </el-row>
     <add-new-artwork
     :show="displayAddArtwork"
@@ -65,23 +85,32 @@ export default {
     }
   },
   methods: {
-    // viewDocuments (artworkID) {
-    //   console.log(`Documents for ID: ${artworkID}`)
+    // viewDocuments (artworkId) {
+    //   console.log(`Documents for ID: ${artworkId}`)
     // },
-    viewHistory (artworkID) {
-      console.log(`History for ID: ${artworkID}`)
+    viewHistory (artworkId) {
+      console.log(`History for ID: ${artworkId}`)
     },
-    viewDetails (artworkID) {
+    viewDetails (artworkId) {
       console.log('view details')
-      this.$router.push(`/artwork/${artworkID}`)
+      this.$router.push(`/artwork/${artworkId}`)
     },
-    addDocument (artworkID) {
-      console.log(`Add document for ID: ${artworkID}`)
-      this.currentArtworkId = artworkID
+    addDocument (artworkId) {
+      console.log(`Add document for ID: ${artworkId}`)
+      this.currentArtworkId = artworkId
       this.displayAddDocument = true
     },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
+      this.$http
+        .get('/artwork')
+        .then(resp => {
+          console.log(resp)
+          this.tableData = resp.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
     closeDialogs () {
       this.displayAddArtwork = false

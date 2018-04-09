@@ -1,6 +1,6 @@
 <template>
 <div>
-    <el-dialog style="background-color: #F39C12;" title="Payment" center :visible="true" width="30%">
+    <el-dialog style="background-color: #F39C12;" :title="'Payment '+ this.$route.params.paymentId" center :visible="true" width="30%">
     <!-- <i class="el-icon-star-on"></i> -->
     <el-form>
         <h3>Amount Due: {{dueAmount}}</h3>
@@ -44,7 +44,7 @@ export default {
         pwd: ""
       },
       pwd2: "",
-      dueAmount: '1200',
+      dueAmount: this.$route.params.price,
       accountBalance: '4000'
     };
   },
@@ -52,14 +52,17 @@ export default {
   },
   methods: {
     onPay() {
-      // TODO: signup logic
-      console.log(this.$route.params.paymentId)
-      this.closeSignup();
-    },
-    closeSignup() {
-      this.visible = false; // evoke setter to emit close event
-    },
-    goLogin() {}
+      console.log('payment starts')
+      this.$http
+        .get("/user/payment/"+this.$route.params.token)
+        .then(resp => {
+            console.log(resp)
+        })
+        .catch(err => {
+          console.log(err)
+        //   this.showError('Error', `Add Document Failed Status: ${err}`, 'warning')
+        })
+    }
   }
 };
 </script>

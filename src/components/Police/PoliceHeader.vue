@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="navigation navigation--police">
+    <div class="navigation navigation--police" @click="$router.push('/police')">
       Police Portal
     </div>
     <div style="height:2.5rem;"></div>
