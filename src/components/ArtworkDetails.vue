@@ -2,7 +2,7 @@
   <div class="container-fluid" v-loading="isLoading">
     <div class="row">
       <div class="col-1"></div>
-      <div class="col-10">
+      <div class="col-10 py-4 content">
         <!-- ARTWORK DETAILS -->
         <artwork-overiew :artwork="artwork"></artwork-overiew>
 
@@ -12,7 +12,7 @@
               <strong class="d-inline-block">
                 Currently owned by:
               </strong>
-                {{ 'Danny Roosevelt' }}
+                {{ artwork.owner.name }}
             </p>
             <div class="mb-0">
               <strong class="d-inline-block">
@@ -34,7 +34,7 @@
                   to obtain his/her consent to sell.
                 </div>
                 <el-button type="primary" plain
-                  @click="this.showEngageOwnerDialog = true">
+                  @click="showEngageOwnerDialog = true">
                   Engage Owner for Consent
                   <i class="el-icon-info el-icon-right"></i>
                 </el-button>
@@ -80,6 +80,7 @@
     <el-dialog
       title="Engage Artwork Owner"
       :visible.sync="showEngageOwnerDialog"
+      v-loading="dialog.isSendingRequest"
       width="50%">
       <div class="px-3">
         <div class="row">
@@ -115,6 +116,7 @@
     <el-dialog
       title="Engage Artwork Owner"
       :visible.sync="showContactBuyerDialog"
+      v-loading="dialog.isSendingRequest"
       width="50%">
       <div class="px-3">
         <div class="row">
@@ -122,6 +124,9 @@
             <el-input
             placeholder="Input buyer email..."
             v-model="dialog.email"></el-input>
+            <el-input class="my-3"
+            placeholder="Input purchase price..."
+            v-model="dialog.price"></el-input>
           </div>
           <div class="col-3">
             <el-button icon="el-icon-search" circle
@@ -166,9 +171,10 @@ export default {
       showContactBuyerDialog: false,
       dialog: {
         isLoading: false,
+        isSendingRequest: false,
         email: "", // owner email or buyer email
         info: "", // owner info or buyer info
-        price: 0,
+        price: "",
         disableConfirmBtn: true // disable the Confirm button before agency searches user info using owner's email address
       }
     };
@@ -212,19 +218,24 @@ export default {
           this.dialog.isLoading = false;
           this.dialog.info = "";
           if (err.response) {
-            this.showError(
-              "Error",
-              `Failed to retrieve owner info. Please try again. Status: ${
-                err.response.statusText
-              }`,
-              "warning"
-            );
+            if (err.response.status === 404) {
+              this.showError("Error", "Email not found.", "warning");
+            } else {
+              this.showError(
+                "Error",
+                `Failed to retrieve owner info. Please try again. Status: ${
+                  err.response.statusText
+                }`,
+                "warning"
+              );
+            }
           } else {
             this.showError("Error", "Unexpected error.", "warning");
           }
         });
     },
     requestConsent() {
+      this.dialog.isSendingRequest = true;
       let body = {
         artworkId: this.artwork.artworkId
       };
@@ -232,6 +243,7 @@ export default {
         .post("agency/requestConsent", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
+          this.dialog.isSendingRequest = false;
           this.showEngageOwnerDialog = false;
           this.showError(
             "Success",
@@ -241,6 +253,7 @@ export default {
         })
         .catch(err => {
           console.log(err.response);
+          this.dialog.isSendingRequest = false;
           if (err.response) {
             this.showError(
               "Error",
@@ -253,6 +266,17 @@ export default {
         });
     },
     requestPayment() {
+      if (!this.dialog.price || this.dialog.price.match(/^[0-9]+$/) == null) {
+        // price contains non-digit
+        // console.log('match(/^[0-9]+$/) != null')
+        this.showError(
+          "Error",
+          "Price should contain only numbers.",
+          "warning"
+        );
+        return;
+      }
+      this.isSendingRequest = true;
       let body = {
         buyerEmail: this.dialog.email,
         artworkId: this.artwork.artworkId,
@@ -262,6 +286,7 @@ export default {
         .post("agency/requestForPayment", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
+          this.isSendingRequest = false;
           this.showContactBuyerDialog = false;
           this.showError(
             "Success",
@@ -271,6 +296,7 @@ export default {
         })
         .catch(err => {
           console.log(err.response);
+          this.isSendingRequest = false;
           if (err.response) {
             if (err.response.statusText === 404) {
               this.showError("Error", "Email not found.", "warning");
@@ -300,7 +326,7 @@ export default {
     SupportingDocs
   },
   created() {
-    // set user type: agency, user, authority or police
+    // set user type: agency, user, authority (inc. police)
     this.type = sessionStorage.type;
     this.user = JSON.parse(sessionStorage.user);
     if (!this.type || !this.user)
@@ -309,6 +335,12 @@ export default {
         "User type and info not available in Storage.",
         "warning"
       );
+    // set headers once again to be sure
+    this.$http.defaults.headers.common = {
+      Id: this.user.email ? this.user.email : this.user.account,
+      Type: this.type
+    };
+    console.log(this.$http.defaults.headers.common);
     this.retrieveArtwork(this.$route.params.id);
   }
 };
@@ -317,5 +349,9 @@ export default {
 .artwork-history {
   border-right: 1px solid lightgray;
   padding-right: 1.5rem;
+}
+div.content {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
 }
 </style>

@@ -49,7 +49,7 @@
               <template slot-scope="scope">
                 <el-button class="btn--history"
                 @click="viewDetails(scope.row.artworkId)">
-                View History</el-button>
+                View Details</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -131,7 +131,6 @@ export default {
 html{
 }
 </style>
-
 <style scoped>
 .el-row {
     margin-bottom: 20px;

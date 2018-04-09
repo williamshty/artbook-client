@@ -1,6 +1,6 @@
 /* eslint-disable */
-// export const baseUrl = "http://172.25.98.129:3000/"; // FSM
-export const baseUrl = "http://172.25.99.151:3000/"; // YZB
+export const baseUrl = "http://172.25.98.129:3000/"; // FSM
+// export const baseUrl = "http://172.25.99.151:3000/"; // YZB
 
 export const artworks = [
   {
