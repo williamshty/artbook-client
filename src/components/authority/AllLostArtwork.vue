@@ -100,8 +100,8 @@ export default {
           console.log(resp)
           this.tableData = resp.data
           for (let data of this.tableData) {
-            var owner = data.owner.toString()
-            data.owner = owner.slice(owner.indexOf('#') + 1)
+            var owner = data.owner.name
+            data.owner = owner
           }
         })
         .catch(err => {
@@ -120,6 +120,13 @@ export default {
   },
   beforeMount () {
     this.loadAllArtworks()
+    var type = sessionStorage.type
+    var user = JSON.parse(sessionStorage.user)
+    this.$http.defaults.headers.common = {
+      Id: user.authorityId,
+      Type: type
+    }
+    console.log(this.$http.defaults.headers.common)
   }
 }
 </script>
