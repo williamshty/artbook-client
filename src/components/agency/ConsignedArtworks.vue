@@ -6,24 +6,19 @@
             <h3 class="my-5">Consigned Artworks</h3>
             <div class="row justify-content-end mb-5">
                 <div class="col-4">
-                    <el-tooltip class="item"
-                    effect="dark"
-                    content="Hit Enter to search."
-                    placement="bottom-end">
-                        <el-input
-                        prefix-icon="el-icon-search"
-                        placeholder="Query an artwork by its ID..."
-                        v-model="query"
-                        v-loading="isSearching"
-                        @change="queryArtwork()">
-                        </el-input>
-                    </el-tooltip>
+                  <el-input
+                    prefix-icon="el-icon-search"
+                    placeholder="Query an artwork by its ID..."
+                    v-model="query"
+                    v-loading="isSearching">
+                  </el-input>
                 </div>
-                <!-- <div class="col-2">
-                    <el-button type="primary">
+                <div class="col-2">
+                    <el-button type="primary"
+                    @click="queryArtwork()">
                         Search
                     </el-button>
-                </div> -->
+                </div>
             </div>
             <el-table
                 :data="artworks"
@@ -105,7 +100,7 @@ export default {
         .then(resp => {
           console.log(resp);
           this.isSearching = false;
-          this.$router.push(`/artwork/${query}`);
+          this.$router.push(`/artwork/${this.query}`);
         })
         .catch(err => {
           console.log(err.response);

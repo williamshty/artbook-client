@@ -13,7 +13,7 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="otp" type="password" placeholder="One-Time Password (OTP)">
+        <el-input v-model="otp" placeholder="One-Time Password (OTP)">
           <i slot="suffix" class="el-input__icon material-icons">lock</i>
         </el-input>
       </el-form-item>
@@ -80,9 +80,10 @@ export default {
     giveConsentUsingOtp() {
       let body = { otp: this.otp };
       this.$http
-        .post("user/consentForSale", this.$qs.stringify(body))
+        .put("user/consentForSale", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
+          this.showError('Success', 'Painting status changed to On Sale.', 'success');
           this.$router.push(`/my`); // should see that painting's status changed to 'ON SALE'
         })
         .catch(err => {

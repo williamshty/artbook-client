@@ -88,7 +88,7 @@ export default {
           "warning"
         );
         return;
-      } 
+      }
       if (this.form.password !== this.pwd2) {
         this.showError(
           "Error",
