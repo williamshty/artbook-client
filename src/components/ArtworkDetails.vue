@@ -8,18 +8,18 @@
 
         <div class="row justify-content-between">
           <div class="col-8">
-            <p class="mb-0">
+            <!-- <p class="mb-0">
               <strong class="d-inline-block">
                 Currently owned by:
               </strong>
-                {{ artwork.owner.name }}
+                {{ artwork.owner ? artwork.owner.name : 'loading...' }}
             </p>
             <div class="mb-0">
               <strong class="d-inline-block">
                 Last transacted at:
               </strong>
               USD${{ '450,000' }}
-            </div>
+            </div> -->
           </div>
 
           <div class="col-4">
@@ -65,7 +65,7 @@
         <div class="row">
           <div class="col-3 artwork-history">
             <!-- TODO: TRANSACTION HISTORY -->
-            <transaction-history></transaction-history>
+            <transaction-history :artworkId="this.$route.params.id"></transaction-history>
           </div>
           <div class="col-9">
             <!-- SUPPORTING DOCUMENTS -->
@@ -122,6 +122,7 @@
         <div class="row">
           <div class="col-9">
             <el-input
+            type="email"
             placeholder="Input buyer email..."
             v-model="dialog.email"></el-input>
             <el-input class="my-3"
@@ -276,7 +277,7 @@ export default {
         );
         return;
       }
-      this.isSendingRequest = true;
+      this.dialog.isSendingRequest = true;
       let body = {
         buyerEmail: this.dialog.email,
         artworkId: this.artwork.artworkId,
@@ -286,7 +287,7 @@ export default {
         .post("agency/requestForPayment", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
-          this.isSendingRequest = false;
+          this.dialog.isSendingRequest = false;
           this.showContactBuyerDialog = false;
           this.showError(
             "Success",
@@ -296,7 +297,7 @@ export default {
         })
         .catch(err => {
           console.log(err.response);
-          this.isSendingRequest = false;
+          this.dialog.isSendingRequest = false;
           if (err.response) {
             if (err.response.statusText === 404) {
               this.showError("Error", "Email not found.", "warning");
@@ -337,7 +338,7 @@ export default {
       );
     // set headers once again to be sure
     this.$http.defaults.headers.common = {
-      Id: this.user.email ? this.user.email : this.user.account,
+      Id: this.user.email ? this.user.email : this.user.authorityId,
       Type: this.type
     };
     console.log(this.$http.defaults.headers.common);

@@ -13,6 +13,7 @@ import AddArtwork from '@/components/authority/AddNewArtwork'
 import AuthLogin from '@/components/auth/AuthLogin'
 import AuthorityRecent from '@/components/authority/AuthorityRecentArtwork'
 import MockPaymentPage from '@/components/individual/MockPaymentPage'
+import ConsentHistory from '@/components/authority/ConsentHistory'
 
 Vue.use(Router)
 
@@ -74,6 +75,10 @@ export default new Router({
     {
       path: '/missing',
       component: AllLost
+    },
+    {
+      path: '/consentHistory',
+      component: ConsentHistory
     }
   ]
 })

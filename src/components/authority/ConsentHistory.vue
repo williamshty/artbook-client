@@ -4,46 +4,41 @@
       <div class="col-1">
       </div>
       <div class="col-10">
-        <h3 class="my-5">My Artworks</h3>
-        <h5 class="text-right mb-3 mr-3">{{ user.name }}</h5>
+        <h3 class="my-5">Consent History</h3>
         <el-table
-          :data="artworks"
+          :data="consents"
           v-loading="isLoading"
-          :default-sort="{prop: 'id', order: 'descending'}"
+          :default-sort="{prop: 'timestamp', order: 'descending'}"
           style="width: 100%">
           <el-table-column
             width="180px"
-            prop="artworkId"
-            label="ID"
+            prop="art.artworkId"
+            label="Artwork ID"
             sortable>
           </el-table-column>
           <el-table-column
-            prop="title"
+            prop="art.title"
             label="Title"
             sortable>
           </el-table-column>
           <el-table-column
-            prop="artist"
-            label="Artist"
-            sortable>
-          </el-table-column>
-          <el-table-column
             width="150px"
-            prop="owner.name"
+            prop="art.owner.name"
             label="Owner"
             sortable>
           </el-table-column>
           <el-table-column
             width="150px"
-            label="Status">
+            prop="agency.name"
+            label="Agency"
+            sortable>
+          </el-table-column>
+          <el-table-column
+            width="150px"
+            label="Time"
+            sortable>
             <template slot-scope="scope">
-              <el-tag
-                :type="scope.row.onSale ?
-                'primary' :
-                (scope.row.lost ? 'danger' : 'info')"
-                close-transition>
-                {{ formatStatus(scope.row) }}
-              </el-tag>
+                {{ $moment(scope.row.timestamp).format('MMM d, YYYY') }}
             </template>
           </el-table-column>
           <el-table-column
@@ -67,43 +62,29 @@
 </template>
 <script>
 /* eslint-disable */
-import { artworks } from "../../const.js";
-
 export default {
   data() {
     return {
-      artworks: [],
-      user: {},
+      consents: [],
       isLoading: false
     };
   },
   methods: {
-    formatStatus(row) {
-      let status = "Normal";
-      if (row.onSale) {
-        status = "On Sale";
-      }
-      if (row.lost) {
-        status = "Lost/Stolen";
-      }
-      return status;
-    },
     viewDetails(row) {
-      this.$router.push(`/artwork/${row.artworkId}`);
+      this.$router.push(`/artwork/${row.art.artworkId}`);
     },
-    retrieveMyArtworks() {
+    retrieveConsentHistory() {
       this.isLoading = true;
       this.$http
-        .get(`ownArtworks/${this.user.email}`)
+        .get(`consentHistory`)
         .then(resp => {
           console.log(resp);
           this.isLoading = false;
-          this.artworks = resp.data;
+          this.consents = resp.data;
         })
         .catch(err => {
           console.log(err.response);
           this.isLoading = false;
-          this.artworks = artworks; // for dev
           if (err.response) {
             this.showError(
               "Error",
@@ -124,13 +105,12 @@ export default {
     }
   },
   created() {
-    this.user = JSON.parse(sessionStorage.user);
     this.$http.defaults.headers.common = {
-      Id: this.user.email ? this.user.email : this.user.account,
-      Type: this.type
+      Id: sessionStorage.user.account,
+      Type: sessionStorage.type
     };
     console.log(this.$http.defaults.headers.common);
-    this.retrieveMyArtworks();
+    this.retrieveConsentHistory();
   }
 };
 </script>

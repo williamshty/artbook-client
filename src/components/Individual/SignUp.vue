@@ -107,7 +107,7 @@ export default {
           this.isLoading = false;
           this.showError(
             "Success",
-            `Signup successful. Now logging your in...`,
+            `Signup successful. Now logging you in...`,
             "success"
           );
           this.closeSignup();

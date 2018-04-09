@@ -4,6 +4,7 @@
         <div class="col-1"></div>
         <div class="col-10">
             <h3 class="my-5">Consigned Artworks</h3>
+            <h5 class="text-right mb-3 mr-3">{{ user.name }}</h5>
             <div class="row justify-content-end mb-5">
                 <div class="col-4">
                   <el-input
@@ -168,6 +169,11 @@ export default {
   },
   created() {
     this.user = JSON.parse(sessionStorage.user);
+    this.$http.defaults.headers.common = {
+      Id: this.user.email ? this.user.email : this.user.account,
+      Type: this.type
+    };
+    console.log(this.$http.defaults.headers.common);
     this.retrieveOnSaleArtworks();
   }
 };
