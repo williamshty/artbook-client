@@ -8,6 +8,7 @@ import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
 import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
 import AddArtwork from '@/components/authority/AddNewArtwork'
+import AuthorityRecent from '@/components/authority/AuthorityRecentArtwork'
 
 Vue.use(Router)
 
@@ -48,6 +49,10 @@ export default new Router({
     {
       path: '/addArtwork',
       component: AddArtwork
+    },
+    {
+      path: '/authorityRecent',
+      component: AuthorityRecent
     }
   ]
 })

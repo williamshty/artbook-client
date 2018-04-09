@@ -44,7 +44,7 @@
             <el-carousel-item
             v-for="index in 6" :key="index">
                 <img class="img-fluid mb-1"
-                src="https://images.unsplash.com/photo-1516290881724-2230498ea247?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e018b51e43bd6b19e8b7126943d1a4&auto=format&fit=crop&w=1100&q=80"
+                src="http://www.lastampa.it/rf/image_lowres/Pub/p3/2013/01/23/Cultura/Foto/NX-A-ART-8178-14042-Vincent_Willem_van_Gogh_Girasoli.jpg"
                 alt="loading artwork image...">
             </el-carousel-item>
         </el-carousel>

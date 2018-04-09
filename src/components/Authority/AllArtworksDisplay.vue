@@ -21,7 +21,7 @@
             <el-table-column label="Documents">
               <template slot-scope="scope">
                 <el-button class="btn--document"
-                @click="viewDocuments(scope.row.artworkID)">
+                @click="viewDetails(scope.row.artworkID)">
                 View Documents</el-button>
               </template>
             </el-table-column>
@@ -48,44 +48,24 @@
 <script>
 import AuthorityHeader from './AuthorityHeader'
 import AddNewArtwork from './AddNewArtwork'
+import {allArtworks} from '../../const'
 export default {
   data () {
     return {
       displayAddArtwork: false,
-      tableData: [
-        {
-          artworkID: '123',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '223',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '333',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '444',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        }
-      ]
+      tableData: allArtworks
     }
   },
   methods: {
-    viewDocuments (artworkID) {
-      console.log(`Documents for ID: ${artworkID}`)
-    },
+    // viewDocuments (artworkID) {
+    //   console.log(`Documents for ID: ${artworkID}`)
+    // },
     viewHistory (artworkID) {
       console.log(`History for ID: ${artworkID}`)
+    },
+    viewDetails (artworkID) {
+      console.log('view details')
+      this.$router.push(`/artwork/${artworkID}`)
     },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)

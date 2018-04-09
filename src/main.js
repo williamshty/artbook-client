@@ -8,6 +8,7 @@ import router from "./router";
 import vueScrollTo from "vue-scroll-to";
 import VueQrcodeReader from "vue-qrcode-reader";
 import axios from "axios";
+import qs from "qs";
 // import BootstrapVue from 'bootstrap-vue'
 // import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap/dist/css/bootstrap.css'

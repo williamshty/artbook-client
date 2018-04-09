@@ -8,7 +8,7 @@
       </el-col>
       <el-col :span="16">
         <div class="grid-content panel">
-            <div class="landing--circle">
+            <div class="landing--circle" @click="redirectRecentArtwork()">
                 <img src="../../assets/img/recent_artwork.png" alt="" class="landing--circle__img">
                 <div class="landing--circle__text">
                    Recent Artwork
@@ -41,7 +41,6 @@
   </div>
 </template>
 <script>
-import router from '@/router/index.js'
 import AuthorityHeader from './AuthorityHeader'
 export default {
   data () {
@@ -50,7 +49,10 @@ export default {
   },
   methods: {
     redirectAllArtwork () {
-      router.replace('/authorityconsole')
+      this.$router.push('/authorityconsole')
+    },
+    redirectRecentArtwork () {
+      this.$router.push('/authorityrecent')
     }
   },
   components: {
