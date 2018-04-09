@@ -53,6 +53,7 @@ export default {
   methods: {
     onPay() {
       // TODO: signup logic
+      console.log(this.$route.params.paymentId)
       this.closeSignup();
     },
     closeSignup() {
