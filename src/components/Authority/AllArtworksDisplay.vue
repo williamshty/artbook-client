@@ -4,7 +4,7 @@
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
-          <el-button class="btn--add" type="primary" icon="el-icon-plus">Add New Artwork</el-button>
+          <el-button class="btn--add" type="primary" icon="el-icon-plus" @click="displayAddArtwork = true">Add New Artwork</el-button>
         </div>
       </el-col>
       <el-col :span="16">
@@ -39,13 +39,19 @@
         <div class="grid-content"></div>
       </el-col>
     </el-row>
+    <add-new-artwork
+    :show="displayAddArtwork"
+    @close="closeDialogs()"
+    ></add-new-artwork>
   </div>
 </template>
 <script>
 import AuthorityHeader from './AuthorityHeader'
+import AddNewArtwork from './AddNewArtwork'
 export default {
   data () {
     return {
+      displayAddArtwork: false,
       tableData: [
         {
           artworkID: '123',
@@ -83,11 +89,15 @@ export default {
     },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
+    },
+    closeDialogs () {
+      this.displayAddArtwork = false
     }
 
   },
   components: {
-    AuthorityHeader
+    AuthorityHeader,
+    AddNewArtwork
   },
   beforeMount () {
     this.loadAllArtworks()
