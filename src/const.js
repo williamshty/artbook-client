@@ -34,7 +34,7 @@ export const artworks = [
 
 export const allArtworks = [
   {
-    artworkID: "f078b12c-d5a3-47ce-88e3-4bfc71998df2",
+    artworkID: "a9f1814c-8320-4c76-80d5-85ecb9bed808",
     artworkTitle: "A World Famous Painting",
     artworkArtist: "Vincent Van Goh",
     artworkOwner: "STY",

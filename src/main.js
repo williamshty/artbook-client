@@ -23,7 +23,7 @@ Vue.use(VueQrcodeReader);
 Vue.use(vueScrollTo);
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
-Vue.prototype.$http.defaults.baseURL = "http://172.25.99.151:3000/";
+Vue.prototype.$http.defaults.baseURL = "http://172.25.98.129:3000/";
 console.log(Vue.prototype.$http.defaults.baseURL);
 Vue.prototype.$moment = moment;
 console.log("loading moment.js...");

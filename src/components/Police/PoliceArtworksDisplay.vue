@@ -4,7 +4,6 @@
     <el-row :gutter="20">
       <el-col :span="4">
         <div class="grid-content">
-          <!-- <el-button class="btn--add" type="primary" icon="el-icon-plus">Add New Artwork</el-button> -->
         </div>
       </el-col>
       <el-col :span="16">
@@ -18,23 +17,24 @@
             </el-table-column>
             <el-table-column prop="artworkOwner" label="Owner" sortable>
             </el-table-column>
-            <!-- <el-table-column prop="artworkStatus" label="Status" sortable>
-              <template slot-scope="scope">
-                <el-button :type="saleButtonType(scope.row.artworkStatus)">
-                {{scope.row.artworkStatus}}</el-button>
-              </template>
-            </el-table-column> -->
-            <el-table-column label="Documents">
+            <el-table-column label="Update Status">
               <template slot-scope="scope">
                 <el-button class="btn--document"
-                @click="viewDocuments(scope.row.artworkID)">
-                View Documents</el-button>
+                @click="markMissing(scope.row.artworkID)">
+                Mark Missing</el-button>
+              </template>
+            </el-table-column>
+            <el-table-column label="Recover">
+              <template slot-scope="scope">
+                <el-button class="" type="danger"
+                @click="markRecovered(scope.row.artworkID)">
+                Mark Recovered</el-button>
               </template>
             </el-table-column>
             <el-table-column label="History">
               <template slot-scope="scope">
                 <el-button class="btn--history"
-                @click="viewHistory(scope.row.artworkID)">
+                @click="viewDetails(scope.row.artworkID)">
                 View History</el-button>
               </template>
             </el-table-column>
@@ -45,64 +45,65 @@
         <div class="grid-content"></div>
       </el-col>
     </el-row>
+    <mark-as-missing
+    :show="displayMarkMissing"
+    :artworkId="currentArtworkId"
+    @close="closeDialogs()"
+    ></mark-as-missing>
+    <mark-as-recovered
+    :show="displayMarkRecovered"
+    :artworkId="currentArtworkId"
+    @close="closeDialogs()"
+    ></mark-as-recovered>
   </div>
 </template>
 <script>
 import PoliceHeader from './PoliceHeader'
+import MarkAsMissing from './MarkAsMissing'
+import {allArtworks} from '../../const'
+import MarkAsRecovered from './MarkAsRecovered'
 export default {
   data () {
     return {
-      tableData: [
-        {
-          artworkID: '123',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY',
-          artworkStatus: 'on'
-        },
-        {
-          artworkID: '223',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY',
-          artworkStatus: 'off'
-        },
-        {
-          artworkID: '333',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY',
-          artworkStatus: 'on'
-        },
-        {
-          artworkID: '444',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY',
-          artworkStatus: 'off'
-        }
-      ]
-    }
-  },
-  computed: {
-    saleButtonType (status) {
-      if (status === 'on') return 'danger'
-      else return 'success'
+      tableData: allArtworks,
+      currentArtworkId: '',
+      displayMarkMissing: false,
+      displayMarkRecovered: false
     }
   },
   methods: {
-    viewDocuments (artworkID) {
-      console.log(`Documents for ID: ${artworkID}`)
-    },
+    // viewDocuments (artworkID) {
+    //   console.log(`Documents for ID: ${artworkID}`)
+    // },
     viewHistory (artworkID) {
       console.log(`History for ID: ${artworkID}`)
     },
+    viewDetails (artworkID) {
+      console.log('view details')
+      this.$router.push(`/artwork/${artworkID}`)
+    },
+    markMissing (artworkID) {
+      console.log(`Add document for ID: ${artworkID}`)
+      this.currentArtworkId = artworkID
+      this.displayMarkMissing = true
+    },
+    markRecovered (artworkID) {
+      console.log(`Add document for ID: ${artworkID}`)
+      this.currentArtworkId = artworkID
+      this.displayMarkRecovered = true
+    },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
+    },
+    closeDialogs () {
+      this.displayMarkRecovered = false
+      this.displayMarkMissing = false
     }
   },
   components: {
-    PoliceHeader
+    PoliceHeader,
+    MarkAsMissing,
+    MarkAsRecovered
   },
   beforeMount () {
     this.loadAllArtworks()
