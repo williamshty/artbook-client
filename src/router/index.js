@@ -7,6 +7,7 @@ import PoliceDisplay from '@/components/police/PoliceArtworksDisplay'
 import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
 import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
+import AddArtwork from '@/components/authority/AddNewArtwork'
 
 Vue.use(Router)
 
@@ -43,6 +44,10 @@ export default new Router({
     {
       path: '/agency',
       component: ConsignedArtworks
+    },
+    {
+      path: '/addArtwork',
+      component: AddArtwork
     }
   ]
 })

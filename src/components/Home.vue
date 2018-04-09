@@ -36,6 +36,7 @@
         </a>
       </div>
     </div>
+    <market-place></market-place>
     <!-- INDIVIDUAL LOGIN DIALOG -->
     <my-login
     :show="myDialogVisible"
@@ -53,7 +54,7 @@
 /* eslint-disable */
 import MyLogin from "./individual/MyLogin.vue";
 import Signup from "./individual/Signup.vue";
-
+import MarketPlace from "./MarketPlace.vue"
 export default {
   data() {
     return {
@@ -78,7 +79,8 @@ export default {
   },
   components: {
     MyLogin,
-    Signup
+    Signup,
+    MarketPlace
   },
   created() {
     if (typeof Storage !== "undefined") {

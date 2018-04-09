@@ -3,6 +3,7 @@
     <div class="navigation navigation--authority" @click="backToLanding()">
       Authority Portal
     </div>
+    <div style="height:2.5rem;"></div>
   </div>
 </template>
 <script>
