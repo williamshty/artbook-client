@@ -21,14 +21,14 @@
             <el-table-column label="Documents">
               <template slot-scope="scope">
                 <el-button class="btn--document"
-                @click="viewDocuments(scope.row.artworkID)">
-                View Documents</el-button>
+                @click="addDocument(scope.row.artworkID)">
+                Add Document</el-button>
               </template>
             </el-table-column>
             <el-table-column label="History">
               <template slot-scope="scope">
                 <el-button class="btn--history"
-                @click="viewHistory(scope.row.artworkID)">
+                @click="viewDetails(scope.row.artworkID)">
                 View History</el-button>
               </template>
             </el-table-column>
@@ -43,61 +43,55 @@
     :show="displayAddArtwork"
     @close="closeDialogs()"
     ></add-new-artwork>
+    <add-document
+    :show="displayAddDocument"
+    :artworkId="currentArtworkId"
+    @close="closeDialogs()"
+    ></add-document>
   </div>
 </template>
 <script>
 import AuthorityHeader from './AuthorityHeader'
 import AddNewArtwork from './AddNewArtwork'
+import {allArtworks} from '../../const'
+import AddDocument from './AddDocument'
 export default {
   data () {
     return {
       displayAddArtwork: false,
-      tableData: [
-        {
-          artworkID: '123',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '223',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '333',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        },
-        {
-          artworkID: '444',
-          artworkTitle: 'Sunflower',
-          artworkArtist: 'Van Goh',
-          artworkOwner: 'STY'
-        }
-      ]
+      tableData: allArtworks,
+      currentArtworkId: '',
+      displayAddDocument: false
     }
   },
   methods: {
-    viewDocuments (artworkID) {
-      console.log(`Documents for ID: ${artworkID}`)
-    },
+    // viewDocuments (artworkID) {
+    //   console.log(`Documents for ID: ${artworkID}`)
+    // },
     viewHistory (artworkID) {
       console.log(`History for ID: ${artworkID}`)
+    },
+    viewDetails (artworkID) {
+      console.log('view details')
+      this.$router.push(`/artwork/${artworkID}`)
+    },
+    addDocument (artworkID) {
+      console.log(`Add document for ID: ${artworkID}`)
+      this.currentArtworkId = artworkID
+      this.displayAddDocument = true
     },
     loadAllArtworks () {
       console.log(`Loading All Artworks`)
     },
     closeDialogs () {
       this.displayAddArtwork = false
+      this.displayAddDocument = false
     }
-
   },
   components: {
     AuthorityHeader,
-    AddNewArtwork
+    AddNewArtwork,
+    AddDocument
   },
   beforeMount () {
     this.loadAllArtworks()

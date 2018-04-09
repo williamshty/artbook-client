@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-dialog title="Add a new artwork" :visible.sync="visible" width="50%" center>
-      <el-form ref="form" :model="form" label-width="120px">
+      <el-form ref="form" :model="form" label-width="140px">
         <el-form-item label="Owner Email" required>
           <el-input v-model.number="form.ownerId"></el-input>
         </el-form-item>
@@ -17,20 +17,27 @@
         <el-form-item label="Description" required>
           <el-input v-model="form.description" type="textarea" rows="4"></el-input>
         </el-form-item>
+        <el-form-item label="Crafted At" required>
+          <el-date-picker
+             v-model="form.createTime"
+             type="date"
+             placeholder="Pick a Date"
+             format="yyyy/MM/dd"
+             value-format="yyyy-MM-dd">
+          </el-date-picker>
+        </el-form-item>
         <el-upload style=""
+        :on-success="fileUploaded"
           class="upload-demo"
           drag
-          action="http://localhost:3000/upload"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :file-list="fileList"
+          action="http://172.25.98.129:3000/upload"
           multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
           <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
         </el-upload>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('form')">Create</el-button>
+          <el-button type="primary" @click="submitForm()">Create</el-button>
           <el-button>Cancel</el-button>
         </el-form-item>
       </el-form>
@@ -39,7 +46,7 @@
 </template>
 
 <script>
-/* eslint-disable */
+/*eslint-disable */
   export default {
     props:[
           "show"
@@ -51,27 +58,52 @@
          title: '',
          artist: '',
          location: '',
-         description: ''
+         description: '',
+         createTime:''
         },
-        newFile:''
+        fileId: '',
+        artworkId: ''
       }
     },
     methods: {
       onSubmit() {
-        console.log('submit!')
-        console.log(this.form)
       },
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            this.$message({
-              message: 'Submitted successfully',
-              type: 'success'
-            })
-          } else {
-            console.log('error submit!!')
-            return false
-          }
+      fileUploaded: function (response, file, fileList) {
+        console.log(response)
+        this.fileId = response
+      },
+      submitForm() {
+        // console.log('submit!')
+        const body = this.form
+        console.log('submission starts below')
+        this.$http
+        .post("/artwork", body)
+        .then(resp => {
+          console.log(resp)
+          console.log('receiveed')
+          this.artworkId = resp.data.artworkId
+          console.log(`Artwork ID is: ${this.artworkId}`)
+          this.addPicToArtwork()
+        })
+        .catch(err => {
+          console.log(err)
+          this.showError('Error', `Add Artwork Failed Status: ${err}`, 'warning')
+        })
+      },
+      addPicToArtwork () {
+        const body = {
+          artworkId: this.artworkId,
+          fileId: this.fileId
+        }
+        this.$http
+        .put("/artwork", body)
+        .then(resp => {
+          console.log(resp)
+          console.log('added pic to artwork')
+        })
+        .catch(err => {
+          console.log(err)
+          this.showError('Error', `Add Artwork Failed Status: ${err}`, 'warning')
         })
       }
     },

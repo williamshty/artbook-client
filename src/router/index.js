@@ -9,6 +9,8 @@ import MyArtworks from '@/components/individual/MyArtworks'
 import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
 import AddArtwork from '@/components/authority/AddNewArtwork'
 import AuthLogin from '@/components/auth/AuthLogin'
+import AuthorityRecent from '@/components/authority/AuthorityRecentArtwork'
+import MockPaymentPage from '@/components/individual/MockPaymentPage'
 
 Vue.use(Router)
 
@@ -53,6 +55,14 @@ export default new Router({
     {
       path: '/auth',
       component: AuthLogin
+    },
+    {
+      path: '/authorityRecent',
+      component: AuthorityRecent
+    },
+    {
+      path: '/payment/:paymentId',
+      component: MockPaymentPage
     }
   ]
 })

@@ -24,6 +24,37 @@ export const artworks = [
   }
 ];
 
+export const allArtworks = [
+  {
+    artworkID: "a9f1814c-8320-4c76-80d5-85ecb9bed808",
+    artworkTitle: "A World Famous Painting",
+    artworkArtist: "Vincent Van Goh",
+    artworkOwner: "STY",
+    artworkImage: "https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Water-Lilies.-Image-via-wikimedia.com_.jpg"
+  },
+  {
+    artworkID: "86d8ce51-192f-42f8-aa3d-f6c0474ddc25",
+    artworkTitle: "A World Famous Painting",
+    artworkArtist: "Vincent Van Goh",
+    artworkOwner: "STY",
+    artworkImage: "https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Water-Lilies.-Image-via-wikimedia.com_.jpg"
+  },
+  {
+    artworkID: "fdaa5245-4e68-4757-9933-4afc5e9720ad",
+    artworkTitle: "A World Famous Painting",
+    artworkArtist: "Vincent Van Goh",
+    artworkOwner: "STY",
+    artworkImage: "https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Water-Lilies.-Image-via-wikimedia.com_.jpg"
+  },
+  {
+    artworkID: '0c43dbc7-0375-4f9d-82aa-5d3118e5bdd6',
+      artworkTitle: 'A World Famous Painting',
+      artworkArtist: 'Vincent Van Goh',
+      artworkOwner: 'STY',
+      artworkImage: "https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Water-Lilies.-Image-via-wikimedia.com_.jpg"
+  }
+];
+
 export const docs = [
   {
     id: 1,

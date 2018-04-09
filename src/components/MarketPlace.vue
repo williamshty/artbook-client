@@ -7,9 +7,9 @@
                 </h2>
         </div>
         <div class="composition u-margin-bottom-big" style="margin-bottom:85vh;">
-                        <img src="https://images.unsplash.com/photo-1516290881724-2230498ea247?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e018b51e43bd6b19e8b7126943d1a4&auto=format&fit=crop&w=1100&q=80" alt="Photo 1" class="composition__photo composition__photo--p1">
-                        <img src="https://images.unsplash.com/photo-1516290881724-2230498ea247?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e018b51e43bd6b19e8b7126943d1a4&auto=format&fit=crop&w=1100&q=80" alt="Photo 2" class="composition__photo composition__photo--p2">
-                        <img src="https://images.unsplash.com/photo-1516290881724-2230498ea247?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e018b51e43bd6b19e8b7126943d1a4&auto=format&fit=crop&w=1100&q=80" alt="Photo 3" class="composition__photo composition__photo--p3">
+                        <img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Water-Lilies.-Image-via-wikimedia.com_.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
+                        <img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Claude-Monet-Haystack.-End-of-the-Summer-detail-1042x695.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
+                        <img src="https://d2jv9003bew7ag.cloudfront.net/uploads/Henri-Rousseau-The-Dream.-Image-via-monsieurmecenat.tumblr.com_-1042x695.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
         </div>
     </section>
   </div>
