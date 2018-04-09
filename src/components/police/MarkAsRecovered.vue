@@ -98,10 +98,15 @@ methods: {
         .then(resp => {
           console.log(resp)
           console.log('added document to prove recovered')
+          this.$message({
+                message: 'Congrats, it is recovered.',
+                type: 'success'
+            })
         })
         .catch(err => {
           console.log(err)
           this.showError('Error', `Mark Missing Failed Status: ${err}`, 'warning')
+          this.$message.error('Oops, this is a error message.')
         })
        }
     },

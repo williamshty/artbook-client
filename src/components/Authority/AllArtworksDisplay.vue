@@ -49,7 +49,7 @@
               <template slot-scope="scope">
                 <el-button class="btn--history"
                 @click="viewDetails(scope.row.artworkId)">
-                View Details</el-button>
+                View Detail</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -107,7 +107,14 @@ export default {
         .then(resp => {
           console.log(resp)
           this.tableData = resp.data
-        })
+          for (let data of this.tableData) {
+            // var owner = data.owner.toString()
+            // data.owner = owner.slice(owner.indexOf('#') + 1)
+            var owner = data.owner.name
+            data.owner = owner
+          }
+          console.log(this.tableData)
+        })``
         .catch(err => {
           console.log(err)
         })
@@ -131,6 +138,7 @@ export default {
 html{
 }
 </style>
+
 <style scoped>
 .el-row {
     margin-bottom: 20px;

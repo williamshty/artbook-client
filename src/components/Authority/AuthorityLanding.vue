@@ -17,7 +17,7 @@
             <div class="landing--circle">
                 <img src="../../assets/img/transfer.png" alt="" class="landing--circle__img">
                 <div class="landing--circle__text">
-                    Recent Ownership <br/>Transfer
+                    History
                 </div>
             </div>
             <div class="landing--circle" @click="redirectAllArtwork()">

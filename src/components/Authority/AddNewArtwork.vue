@@ -100,6 +100,10 @@
         .then(resp => {
           console.log(resp)
           console.log('added pic to artwork')
+          this.$message({
+                message: 'Congrats, this is a success message.',
+                type: 'success'
+            })
         })
         .catch(err => {
           console.log(err)
