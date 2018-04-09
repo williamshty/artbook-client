@@ -1,7 +1,7 @@
 <template>
 <div>
     <el-dialog title="SIGN UP" center :visible.sync="visible" width="30%">
-    <el-form>
+    <el-form v-loading="isLoading">
         <el-form-item>
             <el-input v-model="form.name" placeholder="Name">
                 <i slot="suffix" class="el-input__icon material-icons">account_circle</i>
@@ -13,12 +13,22 @@
             </el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="form.pwd" placeholder="Password">
+            <el-input v-model="form.mobile" placeholder="Mobile Number">
+                <i slot="suffix" class="el-input__icon material-icons">phone</i>
+            </el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-input v-model="form.passport" placeholder="Passport Number">
+                <i slot="suffix" class="el-input__icon material-icons">assignment_ind</i>
+            </el-input>
+        </el-form-item>
+        <el-form-item>
+            <el-input v-model="form.password" type="password" placeholder="Password">
                 <i slot="suffix" class="el-input__icon material-icons">lock</i>
             </el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="pwd2" placeholder="Confirm Password">
+            <el-input v-model="pwd2" type="password" placeholder="Confirm Password">
                 <i slot="suffix" class="el-input__icon material-icons">lock</i>
             </el-input>
         </el-form-item>
@@ -39,9 +49,12 @@ export default {
       form: {
         name: "",
         email: "",
-        pwd: ""
+        password: "",
+        mobile: "",
+        passport: ""
       },
-      pwd2: ""
+      pwd2: "",
+      isLoading: false
     };
   },
   computed: {
@@ -56,13 +69,106 @@ export default {
   },
   methods: {
     onSignup() {
-      // TODO: signup logic
-      this.closeSignup();
+      if (!this.form.name || !this.form.email || 
+      !this.form.password || !this.pwd2 ||
+      !this.form.mobile || !this.form.passport) {
+        this.showError(
+          "Error",
+          "Please fill in all required fields.",
+          "warning"
+        );
+        return;
+      }
+      if (this.form.mobile.match(/^[0-9]+$/) == null) {
+        // mobile contains non-digit
+        // console.log('match(/^[0-9]+$/) != null')
+        this.showError(
+          "Error",
+          "Mobile phone number should contain only numbers.",
+          "warning"
+        );
+        return;
+      } 
+      if (this.form.password !== this.pwd2) {
+        this.showError(
+          "Error",
+          "Please make sure your passwords are consistent.",
+          "warning"
+        );
+        return;
+      }
+      console.log("sign up...");
+      this.isLoading = true;
+      let body = this.form;
+      this.$http
+        .post("user", this.$qs.stringify(body))
+        .then(resp => {
+          console.log(resp);
+          this.isLoading = false;
+          this.showError(
+            "Success",
+            `Signup successful. Now logging your in...`,
+            "success"
+          );
+          this.closeSignup();
+          this.doLogin();
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.isLoading = false;
+          this.showError(
+            "Error",
+            `Signup failed. Please try again. Status: ${
+              err.response.statusText
+            }`,
+            "warning"
+          );
+        });
     },
     closeSignup() {
       this.visible = false; // evoke setter to emit close event
     },
-    goLogin() {}
+    doLogin() {
+      let body = this.form;
+      this.$http
+        .post("user/login", this.$qs.stringify(body))
+        .then(resp => {
+          console.log(resp);
+          // store returned user info into web storage
+          sessionStorage.user = JSON.stringify(resp.data);
+          sessionStorage.type = "user";
+          // set headers to identify request originator for future http requests
+          this.$http.defaults.headers.common = {
+            Id: resp.data.email,
+            Type: "user"
+          };
+          console.log(this.$http.defaults.headers.common);
+          this.$router.push(`/my`);
+        })
+        .catch(err => {
+          console.log(err.response);
+          if (err.response.statusText == "Unauthorized") {
+            this.showError(
+              "Error",
+              "Incorrect email or password. Please try again.",
+              "warning"
+            );
+          } else {
+            this.showError(
+              "Error",
+              `Login failed. Status: ${err.response.statusText}`,
+              "warning"
+            );
+          }
+        });
+    },
+    showError(title, msg, type) {
+      this.$notify({
+        title: title,
+        message: msg,
+        type: type // success, warning
+      });
+    }
   }
 };
 </script>

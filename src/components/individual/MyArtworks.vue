@@ -4,19 +4,20 @@
       <div class="col-1">
       </div>
       <div class="col-10">
-        <h3>My Artworks</h3>
+        <h3 class="my-5">My Artworks</h3>
         <el-table
           :data="artworks"
+          v-loading="isLoading"
           :default-sort="{prop: 'id', order: 'descending'}"
           style="width: 100%">
           <el-table-column
-            width="100px"
-            prop="id"
+            width="180px"
+            prop="artworkId"
             label="ID"
             sortable>
           </el-table-column>
           <el-table-column
-            prop="name"
+            prop="title"
             label="Title"
             sortable>
           </el-table-column>
@@ -26,20 +27,26 @@
             sortable>
           </el-table-column>
           <el-table-column
-            prop="onSale"
+            width="150px"
+            prop="owner.name"
+            label="Owner"
+            sortable>
+          </el-table-column>
+          <el-table-column
+            width="150px"
             label="Status">
             <template slot-scope="scope">
               <el-tag
-                :type="scope.row.onSale === true ?
+                :type="scope.row.onSale ?
                 'primary' :
-                (scope.row.lost === true? 'danger' : 'info')"
+                (scope.row.lost ? 'danger' : 'info')"
                 close-transition>
                 {{ formatStatus(scope.row) }}
               </el-tag>
             </template>
           </el-table-column>
-          <!-- TODO: owner column? -->
           <el-table-column
+            width="150px"
             label="Action">
             <template slot-scope="scope">
               <el-button
@@ -64,7 +71,9 @@ import { artworks } from "../../const.js";
 export default {
   data() {
     return {
-      artworks: artworks
+      artworks: [],
+      user: {},
+      isLoading: false
     };
   },
   methods: {
@@ -73,15 +82,49 @@ export default {
       if (row.onSale) {
         status = "On Sale";
       }
-      if (row.stolen) {
+      if (row.lost) {
         status = "Lost/Stolen";
       }
       return status;
     },
     viewDetails(row) {
-    //   console.log("view details");
-      this.$router.push(`/my/artwork/${row.id}`);
+      this.$router.push(`/artwork/${row.artworkId}`);
+    },
+    retrieveMyArtworks() {
+      this.isLoading = true;
+      this.$http
+        .get(`ownArtworks/${this.user.email}`)
+        .then(resp => {
+          console.log(resp);
+          this.isLoading = false;
+          this.artworks = resp.data;
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.isLoading = false;
+          this.artworks = artworks; // for dev
+          if (err.response) {
+            this.showError(
+              "Error",
+              `Failed to retrieve artworks. Status: ${err.response.statusText}`,
+              "warning"
+            );
+          } else {
+            this.showError("Error", `Unexpected error.`, "warning");
+          }
+        });
+    },
+    showError(title, msg, type) {
+      this.$notify({
+        title: title,
+        message: msg,
+        type: type // success, warning
+      });
     }
+  },
+  created() {
+    this.user = JSON.parse(sessionStorage.user);
+    this.retrieveMyArtworks();
   }
 };
 </script>

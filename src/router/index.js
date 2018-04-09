@@ -10,6 +10,7 @@ import ArtworkDetails from '@/components/ArtworkDetails'
 import MyArtworks from '@/components/individual/MyArtworks'
 import ConsignedArtworks from '@/components/agency/ConsignedArtworks'
 import AddArtwork from '@/components/authority/AddNewArtwork'
+import AuthLogin from '@/components/auth/AuthLogin'
 import AuthorityRecent from '@/components/authority/AuthorityRecentArtwork'
 import MockPaymentPage from '@/components/individual/MockPaymentPage'
 
@@ -57,6 +58,10 @@ export default new Router({
     {
       path: '/addArtwork',
       component: AddArtwork
+    },
+    {
+      path: '/auth',
+      component: AuthLogin
     },
     {
       path: '/authorityRecent',

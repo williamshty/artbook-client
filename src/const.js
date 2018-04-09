@@ -1,34 +1,26 @@
 /* eslint-disable */
+// export const baseUrl = "http://172.25.98.129:3000/"; // FSM
+export const baseUrl = "http://172.25.99.151:3000/"; // YZB
+
 export const artworks = [
   {
-    id: "f078b12c-d5a3-47ce-88e3-4bfc71998df2",
-    name: "A World Famous Painting",
-    artist: "Vincent Van Goh",
-    painted: "April, 2016",
-    location: "Paris, France",
+    $class: "org.acme.artbook.Artwork",
+    artworkId: "ef58c8ca-19ca-4980-a21c-43fc54819f2b",
+    title: "A dummy painting in const.js",
+    artist: "Vincent van Gogh",
+    createTime: "2018-10-2",
+    location: "paris",
+    description: "xxx",
+    lost: false,
     onSale: false,
-    description:
-      "In Canad  a we're known to get a bit of snow in the winter, eh? With this photo ceiling we helped the home owner forget about winter with this tropical Photo Ceiling; we can take any high resolution image and print it on our UV Resistant vinyl membrane for some stunning effects. We also do these types of installations on walls too!"
-  },
-  {
-    id: "86d8ce51-192f-42f8-aa3d-f6c0474ddc25",
-    name: "A World Famous Painting",
-    artist: "Vincent Van Goh",
-    painted: "April, 2016",
-    location: "Paris, France",
-    onSale: false,
-    description:
-      "In Canada we're known to get a bit of snow in the winter, eh? With this photo ceiling we helped the home owner forget about winter with this tropical Photo Ceiling; we can take any high resolution image and print it on our UV Resistant vinyl membrane for some stunning effects. We also do these types of installations on walls too!"
-  },
-  {
-    id: "fdaa5245-4e68-4757-9933-4afc5e9720ad",
-    name: "A World Famous Painting",
-    artist: "Vincent Van Goh",
-    painted: "April, 2016",
-    location: "Paris, France",
-    onSale: false,
-    description:
-      "In Canada we're known to get a bit of snow in the winter, eh? With this photo ceiling we helped the home owner forget about winter with this tropical Photo Ceiling; we can take any high resolution image and print it on our UV Resistant vinyl membrane for some stunning effects. We also do these types of installations on walls too!"
+    pictures: [],
+    owner: {
+      $class: "org.acme.artbook.User",
+      email: "fff@gmail.com",
+      name: "Yu Zhibin",
+      passport: "123",
+      mobile: "456"
+    }
   }
 ];
 

@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-dialog title="SIGN IN" center :visible.sync="visible" width="30%">
-    <el-form>
+    <el-form v-loading="isLoading">
       <el-form-item>
         <el-input v-model="form.email" placeholder="Email Address">
           <i slot="suffix" class="el-input__icon material-icons">email</i>
@@ -12,49 +12,38 @@
           <i slot="suffix" class="el-input__icon material-icons">lock</i>
         </el-input>
       </el-form-item>
+      <el-form-item>
+        <el-input v-model="otp" type="password" placeholder="One-Time Password (OTP)">
+          <i slot="suffix" class="el-input__icon material-icons">lock</i>
+        </el-input>
+      </el-form-item>
     </el-form>
-    <el-button type="primary" round @click="onLogin()">Login</el-button>
-    <div class="mt-2 text-center">
-      Don't have an account?
-      <el-button style="width: 60px;"
-      type="text"
-      @click="goSignup()">
-      Sign up!
-      </el-button>
-    </div>
+    <el-button type="primary" round @click="onLogin()">Give Consent</el-button>
   </el-dialog>
 </div>
 </template>
 <script>
 /* eslint-disable */
 export default {
-  props: ["show"],
   data() {
     return {
+      visible: true,
       form: {
         email: "",
         password: ""
-      }
-    };
-  },
-  computed: {
-    visible: {
-      get() {
-        return this.show;
       },
-      set(newValue) {
-        this.$emit("close"); // let parent set this dialog to invisible
-      }
-    }
+      otp: "",
+      isLoading: false
+    };
   },
   methods: {
     onLogin() {
+      this.isLoading = true;
       let body = this.form;
       this.$http
         .post("user/login", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
-          this.closeLogin();
           // store returned user info into web storage
           sessionStorage.user = JSON.stringify(resp.data);
           sessionStorage.type = "user";
@@ -64,10 +53,11 @@ export default {
             Type: "user"
           };
           console.log(this.$http.defaults.headers.common);
-          this.$router.push(`/my`);
+          this.giveConsentUsingOtp();
         })
         .catch(err => {
           console.log(err.response);
+          this.isLoading = false;
           if (err.response) {
             if (err.response.statusText == "Unauthorized") {
               this.showError(
@@ -87,12 +77,27 @@ export default {
           }
         });
     },
-    closeLogin() {
-      this.visible = false; // evoke setter to emit close event
-    },
-    goSignup() {
-      this.closeLogin();
-      this.$emit("signup");
+    giveConsentUsingOtp() {
+      let body = { otp: this.otp };
+      this.$http
+        .post("user/consentForSale", this.$qs.stringify(body))
+        .then(resp => {
+          console.log(resp);
+          this.$router.push(`/my`); // should see that painting's status changed to 'ON SALE'
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.isLoading = false;
+          if (err.response) {
+            this.showError(
+              "Error",
+              `Invalid OTP. Status: ${err.response.statusText}`,
+              "warning"
+            );
+          } else {
+            this.showError("Error", "Unexpected error.", "warning");
+          }
+        });
     },
     showError(title, msg, type) {
       this.$notify({
