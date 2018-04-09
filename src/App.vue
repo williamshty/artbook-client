@@ -13,16 +13,6 @@ export default {
     };
   },
   created() {
-    if (typeof Storage !== "undefined") {
-      // clear session storage when user navigates back to homepage
-      if (sessionStorage.user) sessionStorage.clear;
-    } else {
-      this.$notify({
-        title: "Warning",
-        message: "Web Storage not supported by the browser..",
-        type: "warning"
-      });
-    }
   }
 };
 </script>
