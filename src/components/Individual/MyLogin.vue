@@ -8,7 +8,7 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-input v-model="form.pwd" placeholder="Password">
+        <el-input v-model="form.pwd" type="password" placeholder="Password">
           <i slot="suffix" class="el-input__icon material-icons">lock</i>
         </el-input>
       </el-form-item>
@@ -51,15 +51,53 @@ export default {
   },
   methods: {
     onLogin() {
-      // TODO: login logic
-      this.closeLogin()
+      let body = {
+        email: this.form.email,
+        password: this.form.pwd
+      };
+      console.log('login...')
+      this.$http
+        .post("user/login", this.$qs.stringify(body))
+        .then(resp => {
+          console.log(resp)
+          sessionStorage.user = resp.data
+          // this.$router.push(`/my`)
+          this.getArtwork()
+        })
+        .catch(err => {
+          console.log(err)
+          this.showError('Error', `Login failed. Status: ${err}`, 'warning')
+        });
+      this.closeLogin();
     },
     closeLogin() {
       this.visible = false; // evoke setter to emit close event
     },
     goSignup() {
-      this.closeLogin()
-      this.$emit('signup');
+      this.closeLogin();
+      this.$emit("signup");
+    },
+    showError(title, msg, type) {
+      this.$notify({
+        title: title,
+        message: msg,
+        type: type // success, warning
+      });
+    },
+    getArtwork() {
+      console.log('get artwork')
+      this.$http
+        .get("artwork/823412c2-aced-4376-92eb-814596d46a8a")
+        .then(resp => {
+          console.log(resp)
+          // sessionStorage.user = resp.data
+          // this.$router.push(`/my`)
+          // this.getArtwork()
+        })
+        .catch(err => {
+          console.log(err)
+          this.showError('Error', `Retrieval failed. Status: ${err}`, 'warning')
+        });
     }
   }
 };
