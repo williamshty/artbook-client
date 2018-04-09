@@ -107,6 +107,11 @@ export default {
         .then(resp => {
           console.log(resp)
           this.tableData = resp.data
+          for (let data of this.tableData) {
+            var owner = data.owner.toString()
+            data.owner = owner.slice(owner.indexOf('#') + 1)
+          }
+          console.log(this.tableData)
         })
         .catch(err => {
           console.log(err)

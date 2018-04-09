@@ -98,6 +98,10 @@ methods: {
         .then(resp => {
           console.log(resp)
           console.log('added document to prove missing')
+          this.$message({
+                message: 'added document to prove missing',
+                type: 'success'
+            })
         })
         .catch(err => {
           console.log(err)

@@ -57,6 +57,10 @@ export default {
         .get("/user/payment/"+this.$route.params.token)
         .then(resp => {
             console.log(resp)
+            this.$message({
+                message: 'Congrats, this is a success message.',
+                type: 'success'
+            })
         })
         .catch(err => {
           console.log(err)
