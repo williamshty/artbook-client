@@ -24,7 +24,7 @@
                     {{ artwork.location }}
                 </span>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <i class="material-icons">fingerprint</i>
                 <span class="align-text-bottom">
                     {{ artwork.artworkId }}
@@ -54,7 +54,7 @@
             </el-carousel>
         </div>
         <!-- painting description -->
-        <p class="mt-2">{{ artwork.description }}</p>
+        <p class="mt-3">{{ artwork.description }}</p>
     </div>
 </template>
 <script>
@@ -84,6 +84,9 @@ export default {
 <style scoped>
 h1 {
   color: #303133;
+}
+div {
+    font-size: 1.5rem;
 }
 </style>
 

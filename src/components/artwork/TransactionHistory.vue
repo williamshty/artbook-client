@@ -2,9 +2,15 @@
 <!-- A REUSABLE COMPONENT -->
     <div>
         <div v-loading="isLoading">
+            <div v-if="history.length === 0">
+                This artwork has yet to be transacted.
+            </div>
             <div v-for="transaction in history" :key="transaction.transactionId">
                 <div class="text-right my-0 time">
                 {{ $moment(transaction.timestamp).format('MMM d, YYYY') }}
+                </div>
+                <div class="text-right my-0 time">
+                {{ $moment(transaction.timestamp).format('hh:mm:ss') }}
                 </div>
                 <div class="text-right my-0">
                     <span>Sold at</span>
@@ -14,6 +20,10 @@
                     <span>by</span>
                     {{ transaction.agency ? transaction.agency.name : 'loading...' }}
                 </div>
+                <!-- <div class="text-right my-0">
+                    (Transaction ID:
+                    {{ transaction.transactionId }})
+                </div> -->
                 <div class="text-right my-3">
                     <i class="el-icon-caret-top ml-auto"></i>
                 </div>
@@ -81,5 +91,8 @@ div.time {
 div span {
   font-size: 0.9em;
   display: inline-block;
+}
+div {
+    font-size: 1.5rem;
 }
 </style>
