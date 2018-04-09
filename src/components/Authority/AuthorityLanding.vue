@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="landing--circle">
-                <img src="../../assets/img/lost.png" alt="" class="landing--circle__img">
+                <img src="../../assets/img/lost.png" alt="" class="landing--circle__img" @click="$router.push('/missing')">
                 <div class="landing--circle__text">
                     All Lost Artwork
                 </div>

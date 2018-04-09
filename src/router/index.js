@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home.vue'
 import AuthorityDisplay from '@/components/authority/AllArtworksDisplay'
+import AllLost from '@/components/authority/AllLostArtwork'
 import AuthorityLanding from '@/components/authority/AuthorityLanding'
 import PoliceLanding from '@/components/police/PoliceLanding'
 import PoliceDisplay from '@/components/police/PoliceArtworksDisplay'
@@ -64,6 +65,10 @@ export default new Router({
     {
       path: '/payment/:paymentId/:price/:token',
       component: MockPaymentPage
+    },
+    {
+      path: '/missing',
+      component: AllLost
     }
   ]
 })
