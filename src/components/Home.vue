@@ -46,15 +46,34 @@
     <!-- INDIVIDUAL SIGNUP DIALOG -->
     <signup
     :show="signupVisible"
-    @close="closeDialogs()"
-    ></signup>
+    @close="closeDialogs()">
+    </signup>
+    <!-- AGENCY LOGIN DIALOG -->
+    <agency-login
+    :show="agencyDialogVisible"
+    @close="closeDialogs()">
+    </agency-login>
+    <!-- AUTHORITY LOGIN DIALOG -->
+    <authority-login
+    :show="authorityDialogVisible"
+    @close="closeDialogs()">
+    </authority-login>
+    <!-- POLICE LOGIN DIALOG -->
+    <police-login
+    :show="policeDialogVisible"
+    @close="closeDialogs()">
+    </police-login>
   </div>
 </template>
 <script>
 /* eslint-disable */
 import MyLogin from "./individual/MyLogin.vue";
 import Signup from "./individual/Signup.vue";
-import MarketPlace from "./MarketPlace.vue"
+import AgencyLogin from "./agency/AgencyLogin.vue";
+import AuthorityLogin from "./authority/AuthorityLogin.vue";
+import PoliceLogin from "./police/PoliceLogin.vue";
+import MarketPlace from "./MarketPlace.vue";
+
 export default {
   data() {
     return {
@@ -64,22 +83,34 @@ export default {
   },
   computed: {
     myDialogVisible() {
-      return this.whichDialogVisible == 'my';
+      return this.whichDialogVisible == "my";
+    },
+    agencyDialogVisible() {
+      return this.whichDialogVisible == "agency";
+    },
+    authorityDialogVisible() {
+      return this.whichDialogVisible == "authority";
+    },
+    policeDialogVisible() {
+      return this.whichDialogVisible == "police";
     }
   },
   methods: {
     closeDialogs() {
-      this.whichDialogVisible = '';
+      this.whichDialogVisible = "";
       this.signupVisible = false;
     },
     showSignup() {
       this.closeDialogs();
-      this.signupVisible = true
+      this.signupVisible = true;
     }
   },
   components: {
     MyLogin,
     Signup,
+    AgencyLogin,
+    AuthorityLogin,
+    PoliceLogin,
     MarketPlace
   },
   created() {

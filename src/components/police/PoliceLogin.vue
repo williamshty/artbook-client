@@ -3,8 +3,8 @@
   <el-dialog title="SIGN IN" center :visible.sync="visible" width="30%">
     <el-form>
       <el-form-item>
-        <el-input v-model="form.email" placeholder="Email Address">
-          <i slot="suffix" class="el-input__icon material-icons">email</i>
+        <el-input v-model="form.account" placeholder="Account">
+          <i slot="suffix" class="el-input__icon material-icons">perm_identity</i>
         </el-input>
       </el-form-item>
       <el-form-item>
@@ -14,14 +14,6 @@
       </el-form-item>
     </el-form>
     <el-button type="primary" round @click="onLogin()">Login</el-button>
-    <div class="mt-2 text-center">
-      Don't have an account?
-      <el-button style="width: 60px;"
-      type="text"
-      @click="goSignup()">
-      Sign up!
-      </el-button>
-    </div>
   </el-dialog>
 </div>
 </template>
@@ -32,7 +24,7 @@ export default {
   data() {
     return {
       form: {
-        email: "",
+        account: "",
         password: ""
       }
     };
@@ -51,20 +43,20 @@ export default {
     onLogin() {
       let body = this.form;
       this.$http
-        .post("user/login", this.$qs.stringify(body))
+        .post("authority/login", this.$qs.stringify(body))
         .then(resp => {
           console.log(resp);
           this.closeLogin();
           // store returned user info into web storage
           sessionStorage.user = JSON.stringify(resp.data);
-          sessionStorage.type = "user";
+          sessionStorage.type = "police";
           // set headers to identify request originator for future http requests
           this.$http.defaults.headers.common = {
-            Id: resp.data.email,
-            Type: "user"
+            Id: resp.data.account,
+            Type: "authority"
           };
           console.log(this.$http.defaults.headers.common);
-          this.$router.push(`/my`);
+          this.$router.push(`/police`);
         })
         .catch(err => {
           console.log(err.response);
@@ -72,7 +64,7 @@ export default {
             if (err.response.statusText == "Unauthorized") {
               this.showError(
                 "Error",
-                "Incorrect email or password. Please try again.",
+                "Incorrect account number or password. Please try again.",
                 "warning"
               );
             } else {
@@ -89,10 +81,6 @@ export default {
     },
     closeLogin() {
       this.visible = false; // evoke setter to emit close event
-    },
-    goSignup() {
-      this.closeLogin();
-      this.$emit("signup");
     },
     showError(title, msg, type) {
       this.$notify({
