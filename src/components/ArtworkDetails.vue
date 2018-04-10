@@ -3,6 +3,7 @@
     <div class="row">
       <div class="col-1"></div>
       <div class="col-10 py-4 content">
+        <h5 class="text-right mb-3 mr-3">{{ user.name ? user.name : user.account }}</h5>
         <!-- ARTWORK DETAILS -->
         <artwork-overiew :artwork="artwork"></artwork-overiew>
 
@@ -114,7 +115,7 @@
     </el-dialog>
     <!-- TRANSFER OWNERSHIP DIALOG -->
     <el-dialog
-      title="Engage Artwork Owner"
+      title="Contact Interested Buyer"
       :visible.sync="showContactBuyerDialog"
       v-loading="dialog.isSendingRequest"
       width="50%">

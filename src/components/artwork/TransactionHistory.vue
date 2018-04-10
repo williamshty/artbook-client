@@ -10,7 +10,7 @@
                 {{ $moment(transaction.timestamp).format('MMM d, YYYY') }}
                 </div>
                 <div class="text-right my-0 time">
-                {{ $moment(transaction.timestamp).format('hh:mm:ss') }}
+                {{ $moment(transaction.timestamp).format('h:mm:ss') }}
                 </div>
                 <div class="text-right my-0">
                     <span>Sold at</span>

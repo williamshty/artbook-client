@@ -59,6 +59,7 @@ export default {
           this.$router.push(`/authority`);
         })
         .catch(err => {
+          console.log(err);
           console.log(err.response);
           if (err.response) {
             if (err.response.statusText == "Unauthorized") {

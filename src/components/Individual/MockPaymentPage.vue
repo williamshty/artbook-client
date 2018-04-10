@@ -3,7 +3,7 @@
     <el-dialog style="background-color: #F39C12;" :title="'Payment '+ this.$route.params.paymentId" center :visible="true" width="30%">
     <!-- <i class="el-icon-star-on"></i> -->
     <el-form v-loading="isLoading">
-        <h3 class="text-center">Amount Due: {{dueAmount}}</h3>
+        <h3 class="text-center">Price of artwork: ${{dueAmount}}</h3>
         <!-- <h3>Account Balance: {{accountBalance}}</h3> -->
         <!-- <el-form-item>
             <el-input v-model="form.name" placeholder="Name">
@@ -64,7 +64,7 @@ export default {
             "Painting added to your artworks.",
             "success"
           );
-          this.$router.replace(`/`); // direct to home page to login, should see artwork added in the table
+          this.$router.push(`/`); // direct to home page to login, should see artwork added in the table
         })
         .catch(err => {
           console.log(err);

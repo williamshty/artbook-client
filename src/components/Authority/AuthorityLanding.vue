@@ -14,7 +14,7 @@
                    Recent Artwork
                 </div>
             </div>
-            <div class="landing--circle">
+            <div class="landing--circle" @click="$router.push('/consentHistory')">
                 <img src="../../assets/img/transfer.png" alt="" class="landing--circle__img">
                 <div class="landing--circle__text">
                     History

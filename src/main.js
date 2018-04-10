@@ -26,7 +26,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
 Vue.prototype.$http.defaults.baseURL = baseUrl;
 console.log(Vue.prototype.$http.defaults.baseURL);
-Vue.prototype.$http.defaults.timeout = 6500;
+// Vue.prototype.$http.defaults.timeout = 6500;
 // console.log("loading moment.js...");
 Vue.prototype.$moment = moment;
 // console.log(Vue.prototype.$moment);

@@ -5,7 +5,7 @@
         <el-button class="bg-transparent"
         type="primary" plain round
         @click="whichDialogVisible = 'authority'">
-        Authority
+        Branch
         </el-button>
         <el-button class="bg-transparent"
         type="primary" plain round
