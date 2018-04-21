@@ -83,11 +83,9 @@ export default {
     border-radius: 4px;
     min-height: 36px;
     position: relative;
-    /* background-color: red; */
   }
   .panel{
     position: relative;
     left: 10%;
-    /* background-color: rebeccapurple; */
   }
   </style>

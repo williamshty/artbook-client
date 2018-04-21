@@ -55,9 +55,6 @@
           </el-table>
         </div>
       </el-col>
-      <!-- <el-col :span="4">
-        <div class="grid-content"></div>
-      </el-col> -->
     </el-row>
     <add-new-artwork
     :show="displayAddArtwork"
@@ -85,9 +82,6 @@ export default {
     }
   },
   methods: {
-    // viewDocuments (artworkId) {
-    //   console.log(`Documents for ID: ${artworkId}`)
-    // },
     viewHistory (artworkId) {
       console.log(`History for ID: ${artworkId}`)
     },
@@ -108,8 +102,6 @@ export default {
           console.log(resp)
           this.tableData = resp.data
           for (let data of this.tableData) {
-            // var owner = data.owner.toString()
-            // data.owner = owner.slice(owner.indexOf('#') + 1)
             var owner = data.owner.name
             data.owner = owner
           }

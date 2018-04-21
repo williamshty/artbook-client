@@ -1,6 +1,15 @@
 /* eslint-disable */
-// export const baseUrl = "http://172.25.98.129:3000/"; // FSM
-export const baseUrl = "http://172.25.96.201:3000/"; // YZB
+import { baseUrl } from './const';
+
+// path to be used to connect middleware running on virtual machine
+export const VM_PATH = "http://172.25.96.201:3000/" 
+// path to be used to connect middleware running on local machine
+export const LOCAL_PATH = "http://localhost:3000/"
+
+
+// export const baseUrl = VM_PATH
+// uncomment the line above and comment the line below to use middleware running on virtual machine
+export const baseUrl = LOCAL_PATH
 
 export const artworks = [
   {

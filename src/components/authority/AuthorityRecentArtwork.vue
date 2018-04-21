@@ -42,9 +42,6 @@ export default {
     }
   },
   methods: {
-    // viewDocuments (artworkID) {
-    //   console.log(`Documents for ID: ${artworkID}`)
-    // },
   },
   components: {
     AuthorityHeader

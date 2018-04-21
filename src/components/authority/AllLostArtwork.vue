@@ -77,9 +77,6 @@ export default {
     }
   },
   methods: {
-    // viewDocuments (artworkId) {
-    //   console.log(`Documents for ID: ${artworkId}`)
-    // },
     viewHistory (artworkId) {
       console.log(`History for ID: ${artworkId}`)
     },
