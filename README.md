@@ -1,10 +1,10 @@
 # Web App for IS4302 Artbook
 
 ### Development Stack
-><b style="color:#1BBC9B;background">Vue.js</b> as application framework
-><b style="color:#674172;">Bootstrap</b> as styling library
-><b style="color:#19B5FE;">Element UI</b> as components library
-><b style="color:#DB0A5B;">Sass</b> for customized styling, you can find the scss files in `src/assets/sass`
+><b style="color:#1BBC9B;background">Vue.js</b> as application framework<br/>
+><b style="color:#674172;">Bootstrap</b> as styling library<br/>
+><b style="color:#19B5FE;">Element UI</b> as components library<br/>
+><b style="color:#DB0A5B;">Sass</b> for customized styling, you can find the scss files in `src/assets/sass`<br/>
 
 
 ### Build Setup
