@@ -26,7 +26,7 @@ npm run build
 
 ### To switch from connecting to virtual machine and connecting to local machine
 #### find the constants file the stores paths
-the file can be find in `src/const.js` 
+the file can be found in `src/const.js` 
 
 #### Follow the instructions given in the comment to comment and  uncomment correct lines of code
 ``` javascript
