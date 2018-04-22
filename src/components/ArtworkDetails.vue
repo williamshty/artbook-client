@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid" v-loading="isLoading">
     <div class="row">
-      <div class="col-1"></div>
+      <div class="col-1"><el-button type="warning" @click="goBack()">back</el-button></div>
       <div class="col-10 py-4 content">
         <h5 class="text-right mb-3 mr-3">{{ user.name ? user.name : user.account }}</h5>
         <!-- ARTWORK DETAILS -->
@@ -182,6 +182,12 @@ export default {
     };
   },
   methods: {
+    goBack () {
+      if (sessionStorage.type === 'user') this.$router.replace('/my')
+      else if (sessionStorage.type === 'police') this.$router.replace('/policeconsole')
+      else if (sessionStorage.type === 'authority') this.$router.replace('/authorityconsole')
+      else if (sessionStorage.type === 'agency') this.$router.replace('/agency')
+    },
     retrieveArtwork(id) {
       this.isLoading = true;
       this.$http
